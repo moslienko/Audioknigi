@@ -7,23 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071A727BC7074AE430B303FC /* Pods_Audioknigi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */; };
 		956219D421A9216700F49C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219D321A9216700F49C23 /* AppDelegate.swift */; };
-		956219D621A9216700F49C23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219D521A9216700F49C23 /* ViewController.swift */; };
 		956219D921A9216700F49C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956219D721A9216700F49C23 /* Main.storyboard */; };
 		956219DC21A9216700F49C23 /* Audioknigi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956219DA21A9216700F49C23 /* Audioknigi.xcdatamodeld */; };
 		956219DE21A9216900F49C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956219DD21A9216900F49C23 /* Assets.xcassets */; };
 		956219E121A9216900F49C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956219DF21A9216900F49C23 /* LaunchScreen.storyboard */; };
+		956219E921A9254A00F49C23 /* AudioBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219E821A9254A00F49C23 /* AudioBooks.swift */; };
+		956219EB21A95BE400F49C23 /* BookPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219EA21A95BE400F49C23 /* BookPageTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12146830F1234AC7D79B3C0C /* Pods-Audioknigi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.release.xcconfig"; sourceTree = "<group>"; };
+		61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audioknigi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		956219D021A9216700F49C23 /* Audioknigi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audioknigi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		956219D321A9216700F49C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		956219D521A9216700F49C23 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		956219D821A9216700F49C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		956219DB21A9216700F49C23 /* Audioknigi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Audioknigi.xcdatamodel; sourceTree = "<group>"; };
 		956219DD21A9216900F49C23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		956219E021A9216900F49C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		956219E221A9216900F49C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		956219E821A9254A00F49C23 /* AudioBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooks.swift; sourceTree = "<group>"; };
+		956219EA21A95BE400F49C23 /* BookPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageTableViewController.swift; sourceTree = "<group>"; };
+		BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071A727BC7074AE430B303FC /* Pods_Audioknigi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				956219D221A9216700F49C23 /* Audioknigi */,
 				956219D121A9216700F49C23 /* Products */,
+				ACDF5AC4D6288E5465113723 /* Pods */,
+				E193AA2BFCE774AD1A166009 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +65,57 @@
 		956219D221A9216700F49C23 /* Audioknigi */ = {
 			isa = PBXGroup;
 			children = (
+				956219EC21A95C2300F49C23 /* Model */,
+				956219ED21A95C2700F49C23 /* View */,
+				956219EE21A95C2B00F49C23 /* SupportedFiles */,
 				956219D321A9216700F49C23 /* AppDelegate.swift */,
-				956219D521A9216700F49C23 /* ViewController.swift */,
-				956219D721A9216700F49C23 /* Main.storyboard */,
-				956219DD21A9216900F49C23 /* Assets.xcassets */,
-				956219DF21A9216900F49C23 /* LaunchScreen.storyboard */,
 				956219E221A9216900F49C23 /* Info.plist */,
-				956219DA21A9216700F49C23 /* Audioknigi.xcdatamodeld */,
 			);
 			path = Audioknigi;
+			sourceTree = "<group>";
+		};
+		956219EC21A95C2300F49C23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				956219E821A9254A00F49C23 /* AudioBooks.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		956219ED21A95C2700F49C23 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				956219D721A9216700F49C23 /* Main.storyboard */,
+				956219EA21A95BE400F49C23 /* BookPageTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		956219EE21A95C2B00F49C23 /* SupportedFiles */ = {
+			isa = PBXGroup;
+			children = (
+				956219DD21A9216900F49C23 /* Assets.xcassets */,
+				956219DF21A9216900F49C23 /* LaunchScreen.storyboard */,
+				956219DA21A9216700F49C23 /* Audioknigi.xcdatamodeld */,
+			);
+			path = SupportedFiles;
+			sourceTree = "<group>";
+		};
+		ACDF5AC4D6288E5465113723 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */,
+				12146830F1234AC7D79B3C0C /* Pods-Audioknigi.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E193AA2BFCE774AD1A166009 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 956219E521A9216900F49C23 /* Build configuration list for PBXNativeTarget "Audioknigi" */;
 			buildPhases = (
+				63B1D79CE10FC699A16B424E /* [CP] Check Pods Manifest.lock */,
 				956219CC21A9216700F49C23 /* Sources */,
 				956219CD21A9216700F49C23 /* Frameworks */,
 				956219CE21A9216700F49C23 /* Resources */,
+				9B31E20A701249CD42A93860 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,14 +186,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		63B1D79CE10FC699A16B424E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Audioknigi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B31E20A701249CD42A93860 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		956219CC21A9216700F49C23 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				956219D621A9216700F49C23 /* ViewController.swift in Sources */,
+				956219EB21A95BE400F49C23 /* BookPageTableViewController.swift in Sources */,
 				956219DC21A9216700F49C23 /* Audioknigi.xcdatamodeld in Sources */,
 				956219D421A9216700F49C23 /* AppDelegate.swift in Sources */,
+				956219E921A9254A00F49C23 /* AudioBooks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +377,7 @@
 		};
 		956219E621A9216900F49C23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +396,7 @@
 		};
 		956219E721A9216900F49C23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12146830F1234AC7D79B3C0C /* Pods-Audioknigi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
