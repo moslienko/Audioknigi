@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AudioBookViewCell" customModule="Audioknigi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="143" height="197"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wsD-nW-3iu">
+                    <rect key="frame" x="0.0" y="0.0" width="143" height="197"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wsD-nW-3iu" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Bs7-yR-qMm"/>
+                <constraint firstItem="wsD-nW-3iu" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="SKS-da-N0g"/>
+                <constraint firstItem="wsD-nW-3iu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qBt-IU-ajy"/>
+                <constraint firstItem="wsD-nW-3iu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="zYg-5j-Zp8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bookCover" destination="wsD-nW-3iu" id="cQi-0i-BBO"/>
+            </connections>
+            <point key="canvasLocation" x="-125.59999999999999" y="52.623688155922046"/>
+        </view>
+    </objects>
+</document>

@@ -13,8 +13,12 @@
 		956219DC21A9216700F49C23 /* Audioknigi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956219DA21A9216700F49C23 /* Audioknigi.xcdatamodeld */; };
 		956219DE21A9216900F49C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956219DD21A9216900F49C23 /* Assets.xcassets */; };
 		956219E121A9216900F49C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956219DF21A9216900F49C23 /* LaunchScreen.storyboard */; };
-		956219E921A9254A00F49C23 /* AudioBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219E821A9254A00F49C23 /* AudioBooks.swift */; };
+		956219E921A9254A00F49C23 /* AudioBookCharter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219E821A9254A00F49C23 /* AudioBookCharter.swift */; };
 		956219EB21A95BE400F49C23 /* BookPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219EA21A95BE400F49C23 /* BookPageTableViewController.swift */; };
+		956219F021A9742A00F49C23 /* AudioBookViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956219EF21A9742A00F49C23 /* AudioBookViewCell.xib */; };
+		956219F221A9747400F49C23 /* AudioBookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F121A9747400F49C23 /* AudioBookViewCell.swift */; };
+		956219F421A974A100F49C23 /* AudioBooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */; };
+		956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F521A9751C00F49C23 /* AudioBooks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +31,12 @@
 		956219DD21A9216900F49C23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		956219E021A9216900F49C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		956219E221A9216900F49C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		956219E821A9254A00F49C23 /* AudioBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooks.swift; sourceTree = "<group>"; };
+		956219E821A9254A00F49C23 /* AudioBookCharter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookCharter.swift; sourceTree = "<group>"; };
 		956219EA21A95BE400F49C23 /* BookPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageTableViewController.swift; sourceTree = "<group>"; };
+		956219EF21A9742A00F49C23 /* AudioBookViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioBookViewCell.xib; sourceTree = "<group>"; };
+		956219F121A9747400F49C23 /* AudioBookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookViewCell.swift; sourceTree = "<group>"; };
+		956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooksCollectionViewController.swift; sourceTree = "<group>"; };
+		956219F521A9751C00F49C23 /* AudioBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooks.swift; sourceTree = "<group>"; };
 		BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +85,8 @@
 		956219EC21A95C2300F49C23 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				956219E821A9254A00F49C23 /* AudioBooks.swift */,
+				956219E821A9254A00F49C23 /* AudioBookCharter.swift */,
+				956219F521A9751C00F49C23 /* AudioBooks.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -87,6 +96,9 @@
 			children = (
 				956219D721A9216700F49C23 /* Main.storyboard */,
 				956219EA21A95BE400F49C23 /* BookPageTableViewController.swift */,
+				956219EF21A9742A00F49C23 /* AudioBookViewCell.xib */,
+				956219F121A9747400F49C23 /* AudioBookViewCell.swift */,
+				956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +192,7 @@
 			files = (
 				956219E121A9216900F49C23 /* LaunchScreen.storyboard in Resources */,
 				956219DE21A9216900F49C23 /* Assets.xcassets in Resources */,
+				956219F021A9742A00F49C23 /* AudioBookViewCell.xib in Resources */,
 				956219D921A9216700F49C23 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,9 +244,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				956219EB21A95BE400F49C23 /* BookPageTableViewController.swift in Sources */,
+				956219F221A9747400F49C23 /* AudioBookViewCell.swift in Sources */,
 				956219DC21A9216700F49C23 /* Audioknigi.xcdatamodeld in Sources */,
 				956219D421A9216700F49C23 /* AppDelegate.swift in Sources */,
-				956219E921A9254A00F49C23 /* AudioBooks.swift in Sources */,
+				956219F421A974A100F49C23 /* AudioBooksCollectionViewController.swift in Sources */,
+				956219E921A9254A00F49C23 /* AudioBookCharter.swift in Sources */,
+				956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

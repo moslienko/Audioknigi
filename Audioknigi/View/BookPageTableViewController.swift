@@ -11,15 +11,20 @@ import UIKit
 class BookPageTableViewController: UITableViewController {
     private let reuseIdentifier = "cellCharter"
     
+    var myBook = [AudioBooks]()
     var charters = [Audio]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
 
-        self.charters = getCharterBook(url: URL(string: "https://knigavuhe.ru/book/burja-stoletija/")!)
-        //print ("List:",self.charters)
-        self.tableView.reloadData()
+        if self.myBook.count > 0 {
+            print ("get:",self.myBook)
+            self.navigationItem.title = self.myBook[0].name
+            self.charters = getCharterBook(url: self.myBook[0].url)
+            //print ("List:",self.charters)
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -41,4 +46,29 @@ class BookPageTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) != nil {
+            self.performSegue(withIdentifier: "playBook", sender: self)
+        }
+    }
+    
+   
+    @IBAction func deleteBookAction(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Delete", message: "Delete audio book?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ (UIAlertAction)in
+            if deleteBook(id: self.myBook[0].id) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "playBook" {
+        }
+     }
+    
 }

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sFY-3t-9qZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hIG-N1-FCQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Book Page Table View Controller-->
+        <!--Book-->
         <scene sceneID="Z7r-7X-niT">
             <objects>
                 <tableViewController id="tSj-xm-di0" customClass="BookPageTableViewController" customModule="Audioknigi" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="nB9-Q5-BKE" kind="show" identifier="playBook" id="dWN-IP-H9Y"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -48,29 +52,95 @@
                             <outlet property="delegate" destination="tSj-xm-di0" id="apS-zE-rJ4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="w08-eo-Bni"/>
+                    <navigationItem key="navigationItem" title="Book" id="pIX-FZ-eI7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="NIA-u1-YoL">
+                            <connections>
+                                <action selector="deleteBookAction:" destination="tSj-xm-di0" id="Kxb-Q7-6Wj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Py-bH-B9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530.39999999999998" y="-78.710644677661179"/>
+            <point key="canvasLocation" x="1295" y="-67"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cWP-Hb-g5n">
+            <objects>
+                <viewController id="nB9-Q5-BKE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gcT-ug-SDQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KQ2-mu-LKZ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fV-69-wxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2023" y="-67"/>
+        </scene>
+        <!--AudioBooks-->
+        <scene sceneID="jyI-cX-NVY">
+            <objects>
+                <collectionViewController id="n4a-DO-XM9" customClass="AudioBooksCollectionViewController" customModule="Audioknigi" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oRE-Ni-V65">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zKB-qm-t4T">
+                            <size key="itemSize" width="166" height="231"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellAudioBook" id="i8h-9l-tcS" customClass="AudioBookViewCell" customModule="Audioknigi" customModuleProvider="target">
+                                <rect key="frame" x="104.5" y="20" width="166" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="166" height="231"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                                <connections>
+                                    <segue destination="tSj-xm-di0" kind="show" identifier="openAudioBook" id="rtH-7u-pse"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="n4a-DO-XM9" id="t96-ja-24p"/>
+                            <outlet property="delegate" destination="n4a-DO-XM9" id="Ahj-S3-oa1"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="AudioBooks" id="9mt-tn-QoP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DVG-X3-FZg">
+                            <connections>
+                                <action selector="addAudioBook:" destination="n4a-DO-XM9" id="cF4-Be-uHT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OCx-N0-fMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="538" y="-67"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="aDI-FS-UZr">
+        <scene sceneID="9uF-iG-DtA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sFY-3t-9qZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hIG-N1-FCQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="7f6-w6-n7K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dFk-Ou-P08">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="tSj-xm-di0" kind="relationship" relationship="rootViewController" id="S7Z-DA-2Hf"/>
+                        <segue destination="n4a-DO-XM9" kind="relationship" relationship="rootViewController" id="yCd-yx-EVQ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ur-Nu-FBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1YF-8i-Mb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-410.39999999999998" y="-79.610194902548727"/>
+            <point key="canvasLocation" x="-223.19999999999999" y="-67.016491754122939"/>
         </scene>
     </scenes>
 </document>
