@@ -9,18 +9,47 @@
 import UIKit
 
 
-class AudioBooksCollectionViewController: UICollectionViewController {
+class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRecognizerDelegate {
     private let reuseIdentifier = "cellAudioBook"
     
-    var books = [AudioBooks]()
-    
+    var books = [AudioBooks]() // Список сохраненых книг
+    let currentBook = getLastBook() // Последняя прослушанная книга
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView?.register(UINib(nibName: "AudioBookViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         self.books = getMyAudioBooks()
         self.collectionView.reloadData()
+        
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+
+        let view = MiniPlayerView.instanceFromNib()
+        view.frame = CGRect(x: 0, y: height-100, width: width, height: 100)
+        
+        if self.currentBook.count > 0 {
+            view.bookName?.text = self.currentBook[0].name
+            view.coverImage?.image = UIImage(data: self.currentBook[0].image)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.openCurrentBook(_:)))
+            view.addGestureRecognizer(tap)
+            view.isUserInteractionEnabled = true
+
+            self.view.addSubview(view)
+        }
     }
+    
+    @objc func openCurrentBook(_ sender: UITapGestureRecognizer? = nil){
+        let playerVC = self.storyboard?.instantiateViewController(withIdentifier: "PlayerVC_ID") as! PlayerViewController
+
+        playerVC.book = [self.currentBook[0]]
+        playerVC.charterID = self.currentBook[0].charter
+        playerVC.charter = getCharterBook(url: self.currentBook[0].url)
+        
+        self.navigationController!.pushViewController(playerVC, animated: true)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,10 +90,11 @@ class AudioBooksCollectionViewController: UICollectionViewController {
                      url = url?.replacingOccurrences(of: "knigav", with: "m.knigav")
                 }
                 //Получить информацию о книге и сохранить
-                let bookInfo = getBookInfoFromURL(NSURL(string: url!)! as URL)!
+                //TODO проверка на ввод правильного url
+                let bookInfo = getBookInfoFromURL(NSURL(string: url!)! as URL)
                 print ("Book:", bookInfo)
-                if bookInfo.id != "" {
-                    if createBook(bookInfo: bookInfo) {
+                if bookInfo != nil {
+                    if createBook(bookInfo: bookInfo!) {
                         self.books = getMyAudioBooks()
                         self.collectionView.reloadData()
                     }

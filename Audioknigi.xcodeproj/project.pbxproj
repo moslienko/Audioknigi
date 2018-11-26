@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		071A727BC7074AE430B303FC /* Pods_Audioknigi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */; };
+		950641E421ABD55A00994EF5 /* PlayerURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950641E321ABD55A00994EF5 /* PlayerURL.swift */; };
+		95588FD221AAA206001925E9 /* MiniPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95588FD121AAA206001925E9 /* MiniPlayerView.xib */; };
+		95588FD421AAA235001925E9 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95588FD321AAA235001925E9 /* MiniPlayerView.swift */; };
+		95588FD621AAAC78001925E9 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95588FD521AAAC78001925E9 /* Player.swift */; };
+		95588FD821AABF2C001925E9 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95588FD721AABF2C001925E9 /* PlayerViewController.swift */; };
 		956219D421A9216700F49C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219D321A9216700F49C23 /* AppDelegate.swift */; };
 		956219D921A9216700F49C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956219D721A9216700F49C23 /* Main.storyboard */; };
 		956219DC21A9216700F49C23 /* Audioknigi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 956219DA21A9216700F49C23 /* Audioknigi.xcdatamodeld */; };
@@ -24,6 +29,11 @@
 /* Begin PBXFileReference section */
 		12146830F1234AC7D79B3C0C /* Pods-Audioknigi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.release.xcconfig"; sourceTree = "<group>"; };
 		61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audioknigi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		950641E321ABD55A00994EF5 /* PlayerURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerURL.swift; sourceTree = "<group>"; };
+		95588FD121AAA206001925E9 /* MiniPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniPlayerView.xib; sourceTree = "<group>"; };
+		95588FD321AAA235001925E9 /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
+		95588FD521AAAC78001925E9 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		95588FD721AABF2C001925E9 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		956219D021A9216700F49C23 /* Audioknigi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audioknigi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		956219D321A9216700F49C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956219D821A9216700F49C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +97,8 @@
 			children = (
 				956219E821A9254A00F49C23 /* AudioBookCharter.swift */,
 				956219F521A9751C00F49C23 /* AudioBooks.swift */,
+				95588FD521AAAC78001925E9 /* Player.swift */,
+				950641E321ABD55A00994EF5 /* PlayerURL.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +111,9 @@
 				956219EF21A9742A00F49C23 /* AudioBookViewCell.xib */,
 				956219F121A9747400F49C23 /* AudioBookViewCell.swift */,
 				956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */,
+				95588FD121AAA206001925E9 /* MiniPlayerView.xib */,
+				95588FD321AAA235001925E9 /* MiniPlayerView.swift */,
+				95588FD721AABF2C001925E9 /* PlayerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95588FD221AAA206001925E9 /* MiniPlayerView.xib in Resources */,
 				956219E121A9216900F49C23 /* LaunchScreen.storyboard in Resources */,
 				956219DE21A9216900F49C23 /* Assets.xcassets in Resources */,
 				956219F021A9742A00F49C23 /* AudioBookViewCell.xib in Resources */,
@@ -247,9 +263,13 @@
 				956219F221A9747400F49C23 /* AudioBookViewCell.swift in Sources */,
 				956219DC21A9216700F49C23 /* Audioknigi.xcdatamodeld in Sources */,
 				956219D421A9216700F49C23 /* AppDelegate.swift in Sources */,
+				95588FD421AAA235001925E9 /* MiniPlayerView.swift in Sources */,
+				950641E421ABD55A00994EF5 /* PlayerURL.swift in Sources */,
 				956219F421A974A100F49C23 /* AudioBooksCollectionViewController.swift in Sources */,
 				956219E921A9254A00F49C23 /* AudioBookCharter.swift in Sources */,
+				95588FD621AAAC78001925E9 /* Player.swift in Sources */,
 				956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */,
+				95588FD821AABF2C001925E9 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -115,7 +115,9 @@ func getBookInfoFromURL(_ url:URL) ->AudioBooks? {
                         id: id,
                         image: cover,
                         name: try doc.select("div.book_title").first()!.text(),
-                        url:url
+                        url:url,
+                        charter: 0,
+                        time: 0
                     )
                     
                     return bookInfo

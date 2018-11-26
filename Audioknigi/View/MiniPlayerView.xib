@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MiniPlayerView" customModule="Audioknigi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZa-M6-xcF">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tGn-yX-llV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xic-hc-WKH">
+                                <rect key="frame" x="337" y="25" width="30" height="30"/>
+                                <state key="normal" title="&gt;"/>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xic-hc-WKH" firstAttribute="top" secondItem="tGn-yX-llV" secondAttribute="top" constant="25" id="MJD-CP-9Xe"/>
+                            <constraint firstAttribute="bottom" secondItem="xic-hc-WKH" secondAttribute="bottom" constant="25" id="Xgr-fi-mYI"/>
+                            <constraint firstAttribute="trailing" secondItem="xic-hc-WKH" secondAttribute="trailing" constant="8" id="q05-pT-Z61"/>
+                            <constraint firstItem="xic-hc-WKH" firstAttribute="trailing" secondItem="tGn-yX-llV" secondAttribute="trailingMargin" id="wCt-gf-6WN"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUN-Z4-gjA">
+                    <rect key="frame" x="71" y="30" width="244" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="244" id="epT-ES-oj2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ayy-Fn-RH8">
+                    <rect key="frame" x="16" y="12" width="41" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="41" id="yDG-aO-Z8B"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Ayy-Fn-RH8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="027-z5-gOD"/>
+                <constraint firstAttribute="trailing" secondItem="GZa-M6-xcF" secondAttribute="trailing" id="JuC-Tj-51P"/>
+                <constraint firstItem="GZa-M6-xcF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NCY-HV-q3a"/>
+                <constraint firstItem="GZa-M6-xcF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="REy-Im-MXr"/>
+                <constraint firstItem="Ayy-Fn-RH8" firstAttribute="centerY" secondItem="cUN-Z4-gjA" secondAttribute="centerY" id="WYQ-oz-yTE"/>
+                <constraint firstItem="cUN-Z4-gjA" firstAttribute="leading" secondItem="Ayy-Fn-RH8" secondAttribute="trailing" constant="14" id="YuM-hc-uBe"/>
+                <constraint firstItem="Ayy-Fn-RH8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="aN1-b5-s6g"/>
+                <constraint firstItem="Ayy-Fn-RH8" firstAttribute="centerY" secondItem="GZa-M6-xcF" secondAttribute="centerY" id="c4G-Xv-pWD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ayy-Fn-RH8" secondAttribute="bottom" constant="13" id="cTq-Ke-R57"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bookName" destination="cUN-Z4-gjA" id="kmf-DD-QiP"/>
+                <outlet property="coverImage" destination="Ayy-Fn-RH8" id="Vpv-wK-taP"/>
+                <outlet property="playerButton" destination="xic-hc-WKH" id="SHs-Ln-Vq3"/>
+            </connections>
+            <point key="canvasLocation" x="-71.200000000000003" y="115.59220389805098"/>
+        </view>
+    </objects>
+</document>

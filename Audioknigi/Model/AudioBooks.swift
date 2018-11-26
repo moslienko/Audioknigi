@@ -13,6 +13,9 @@ struct AudioBooks {
     var image: Data //Обложка
     var name: String //Название
     var url: URL //URL адрес книги
+    var charter: Int //ID текущей главы
+    var time: Float //Время остановки главы
+
 }
 
 /**
@@ -61,6 +64,9 @@ func createBook(bookInfo:AudioBooks) -> Bool{
         book.setValue(bookInfo.name, forKey: "name")
         book.setValue(bookInfo.url, forKey: "url")
         
+        book.setValue(0, forKey: "charter")
+        book.setValue(0, forKey: "time")
+
         do {
             try managedContext.save()
             return true
@@ -93,7 +99,10 @@ func getMyAudioBooks() -> [AudioBooks]{
                 id: data.value(forKey: "id") as! String,
                 image: data.value(forKey: "image") as! Data,
                 name: data.value(forKey: "name") as! String,
-                url: data.value(forKey: "url") as! URL
+                url: data.value(forKey: "url") as! URL,
+                charter: data.value(forKey: "charter") as! Int,
+                time: data.value(forKey: "time") as! Float
+
             ))
         }
         
@@ -104,6 +113,44 @@ func getMyAudioBooks() -> [AudioBooks]{
         return myBooks
 
     }
+}
+
+/**
+ Получить аудиокнигу из CoreData
+ - Parameter id: Идентификатор книги
+ - Returns: Сохраненные аудиокниги
+ */
+func getAudioBookWithID(_ id:String) -> [AudioBooks]{
+    var myBook = [AudioBooks]()
+    
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return myBook }
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Books")
+    fetchRequest.predicate = NSPredicate(format: "id = %@", id)
+    do
+    {
+        let bookInfo = try managedContext.fetch(fetchRequest)
+        if bookInfo.count != 0 {
+            let objectBook = bookInfo[0] as! NSManagedObject
+
+            myBook.append(AudioBooks(
+                id: objectBook.value(forKey: "id") as! String,
+                image: objectBook.value(forKey: "image") as! Data,
+                name: objectBook.value(forKey: "name") as! String,
+                url: objectBook.value(forKey: "url") as! URL,
+                charter: objectBook.value(forKey: "charter") as! Int,
+                time: objectBook.value(forKey: "time") as! Float
+            ))
+            return myBook
+        }
+    }
+    catch
+    {
+        print(error)
+        return myBook
+    }
+    return myBook
 }
 
 /**

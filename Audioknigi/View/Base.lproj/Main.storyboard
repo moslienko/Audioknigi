@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Book-->
+        <!--AudioBook-->
         <scene sceneID="Z7r-7X-niT">
             <objects>
                 <tableViewController id="tSj-xm-di0" customClass="BookPageTableViewController" customModule="Audioknigi" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,32 +52,112 @@
                             <outlet property="delegate" destination="tSj-xm-di0" id="apS-zE-rJ4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Book" id="pIX-FZ-eI7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="NIA-u1-YoL">
-                            <connections>
-                                <action selector="deleteBookAction:" destination="tSj-xm-di0" id="Kxb-Q7-6Wj"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="AudioBook" id="pIX-FZ-eI7">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="NIA-u1-YoL">
+                                <connections>
+                                    <action selector="deleteBookAction:" destination="tSj-xm-di0" id="Kxb-Q7-6Wj"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="EHl-1b-Hrb"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Py-bH-B9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1295" y="-67"/>
         </scene>
-        <!--View Controller-->
+        <!--Play audio book-->
         <scene sceneID="cWP-Hb-g5n">
             <objects>
-                <viewController id="nB9-Q5-BKE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerVC_ID" id="nB9-Q5-BKE" customClass="PlayerViewController" customModule="Audioknigi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcT-ug-SDQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6nW-Py-UQh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="323"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NR5-Bi-9kS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="323"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="G6O-XW-feK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="323"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whh-Jp-vQQ">
+                                            <rect key="frame" x="128" y="103" width="119" height="181"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="181" id="7xa-dj-0KL"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="whh-Jp-vQQ" firstAttribute="leading" secondItem="G6O-XW-feK" secondAttribute="leading" constant="128" id="FDh-Sa-lwC"/>
+                                        <constraint firstItem="whh-Jp-vQQ" firstAttribute="bottom" secondItem="G6O-XW-feK" secondAttribute="bottomMargin" constant="-31" id="N7p-IT-vuf"/>
+                                        <constraint firstItem="whh-Jp-vQQ" firstAttribute="top" secondItem="G6O-XW-feK" secondAttribute="top" constant="103" id="NqB-QD-1Qh"/>
+                                        <constraint firstItem="whh-Jp-vQQ" firstAttribute="leading" secondItem="G6O-XW-feK" secondAttribute="leading" constant="128" id="OTr-1c-igN"/>
+                                        <constraint firstAttribute="trailing" secondItem="whh-Jp-vQQ" secondAttribute="trailing" constant="128" id="Uiw-aE-7ZB"/>
+                                        <constraint firstAttribute="trailing" secondItem="whh-Jp-vQQ" secondAttribute="trailing" constant="128" id="rMp-Gp-Tmk"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJA-fg-New">
+                                <rect key="frame" x="49" y="376" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playButtonClicked:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="0ko-6g-IwB"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lxZ-co-jzf">
+                                <rect key="frame" x="47" y="331" width="282" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="playerSliderChange:" destination="nB9-Q5-BKE" eventType="valueChanged" id="nq0-0H-aXQ"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8m-dE-8f1">
+                                <rect key="frame" x="49" y="414" width="34" height="30"/>
+                                <state key="normal" title="Time"/>
+                                <connections>
+                                    <action selector="openTimer:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="4PV-JU-tx7"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6nW-Py-UQh" firstAttribute="trailing" secondItem="KQ2-mu-LKZ" secondAttribute="trailing" id="7JR-1k-RrJ"/>
+                            <constraint firstItem="KQ2-mu-LKZ" firstAttribute="bottom" secondItem="n8m-dE-8f1" secondAttribute="bottom" constant="223" id="ArL-wg-Jn7"/>
+                            <constraint firstItem="NR5-Bi-9kS" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" id="Bnn-dV-XlV"/>
+                            <constraint firstItem="6nW-Py-UQh" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" id="ChC-Pd-rzu"/>
+                            <constraint firstItem="n8m-dE-8f1" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" constant="49" id="D0t-MF-KaA"/>
+                            <constraint firstItem="KQ2-mu-LKZ" firstAttribute="bottom" secondItem="6nW-Py-UQh" secondAttribute="bottom" constant="344" id="M1w-XX-Ivj"/>
+                            <constraint firstItem="n8m-dE-8f1" firstAttribute="top" secondItem="cJA-fg-New" secondAttribute="bottom" constant="8" symbolic="YES" id="OaT-ZY-15t"/>
+                            <constraint firstItem="NR5-Bi-9kS" firstAttribute="top" secondItem="gcT-ug-SDQ" secondAttribute="top" id="RtJ-yV-UFI"/>
+                            <constraint firstItem="6nW-Py-UQh" firstAttribute="top" secondItem="gcT-ug-SDQ" secondAttribute="top" id="Z0m-VJ-IeW"/>
+                            <constraint firstItem="KQ2-mu-LKZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cJA-fg-New" secondAttribute="trailing" symbolic="YES" id="aP6-rB-Nig"/>
+                            <constraint firstItem="cJA-fg-New" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" constant="49" id="c4X-kC-Vdw"/>
+                            <constraint firstItem="KQ2-mu-LKZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="n8m-dE-8f1" secondAttribute="trailing" symbolic="YES" id="cex-rV-iZH"/>
+                            <constraint firstItem="NR5-Bi-9kS" firstAttribute="bottom" secondItem="6nW-Py-UQh" secondAttribute="bottom" id="gV3-HL-4F0"/>
+                            <constraint firstAttribute="trailing" secondItem="NR5-Bi-9kS" secondAttribute="trailing" id="zH1-N2-PqJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="KQ2-mu-LKZ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Play audio book" largeTitleDisplayMode="never" id="im5-V8-YyA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="kLH-Tu-S1b"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backgroundImage" destination="6nW-Py-UQh" id="hgz-pf-JzW"/>
+                        <outlet property="coverImage" destination="whh-Jp-vQQ" id="tx1-86-tTq"/>
+                        <outlet property="playButton" destination="cJA-fg-New" id="295-Uk-pHi"/>
+                        <outlet property="playerSlider" destination="lxZ-co-jzf" id="5gX-5O-1eY"/>
+                        <outlet property="timerButton" destination="n8m-dE-8f1" id="CZY-8H-NW0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fV-69-wxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2023" y="-67"/>
+            <point key="canvasLocation" x="2021.5999999999999" y="-67.016491754122939"/>
         </scene>
         <!--AudioBooks-->
         <scene sceneID="jyI-cX-NVY">

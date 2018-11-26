@@ -68,6 +68,19 @@ class BookPageTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "playBook" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                if indexPath.first != nil {
+                    let bookData = self.myBook[0]
+                    let charterData = self.charters[indexPath.row]
+
+                    if let openBookVC = segue.destination as? PlayerViewController {
+                        openBookVC.book = [bookData] //Данные о книги
+                        openBookVC.charter = [charterData] //Глава
+                        openBookVC.charterID = indexPath.row //Порядковый номер главы
+
+                    }
+                }
+            }
         }
      }
     
