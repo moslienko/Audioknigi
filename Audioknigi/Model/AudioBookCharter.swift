@@ -43,17 +43,20 @@ func getCharterBook(url:URL) -> [Audio] {
         if html != "" {
             let doc: Document = try SwiftSoup.parse(html)
             
-            let playlistDiv: Element = try doc.select("div.book_player_playlist").first()!
-            let playlistItem: Elements = try playlistDiv.select("div.book_player_playlist_item")
-
-            for i in playlistItem.enumerated() {
-                audioList.append(Audio(
-                    name: try i.element.select("div.book_player_playlist_item_name").first()!.text(),
-                    time: try i.element.select("div.book_player_playlist_item_time").first()!.text()
-                ))
+            let checkPlaylistDiv = try doc.select("div.book_player_playlist")
+            if checkPlaylistDiv.first() != nil {
+                let playlistDiv: Element = try doc.select("div.book_player_playlist").first()!
+                let playlistItem: Elements = try playlistDiv.select("div.book_player_playlist_item")
+                
+                for i in playlistItem.enumerated() {
+                    audioList.append(Audio(
+                        name: try i.element.select("div.book_player_playlist_item_name").first()!.text(),
+                        time: try i.element.select("div.book_player_playlist_item_time").first()!.text()
+                    ))
+                }
+                
+                return audioList
             }
-            
-            return audioList
         }
         
     } catch Exception.Error( _, let message) {
