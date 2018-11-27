@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D7BC453285CA2B0F4A534567BD81C085"
+               BlueprintIdentifier = "BF58348384FDCF7C7C0D550554E8D45E"
                BuildableName = "Pods_Audioknigi.framework"
                BlueprintName = "Pods-Audioknigi"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D7BC453285CA2B0F4A534567BD81C085"
+            BlueprintIdentifier = "BF58348384FDCF7C7C0D550554E8D45E"
             BuildableName = "Pods_Audioknigi.framework"
             BlueprintName = "Pods-Audioknigi"
             ReferencedContainer = "container:Pods.xcodeproj">

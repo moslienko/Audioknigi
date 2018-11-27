@@ -16,23 +16,29 @@
             <rect key="frame" x="0.0" y="0.0" width="143" height="197"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wsD-nW-3iu">
-                    <rect key="frame" x="0.0" y="0.0" width="143" height="197"/>
-                </imageView>
+                <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="b1c-eY-5SQ" customClass="ShadowImageView" customModule="ShadowImageView">
+                    <rect key="frame" x="6" y="6" width="131" height="185"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadiusOffSetPercentage">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="wsD-nW-3iu" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Bs7-yR-qMm"/>
-                <constraint firstItem="wsD-nW-3iu" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="SKS-da-N0g"/>
-                <constraint firstItem="wsD-nW-3iu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qBt-IU-ajy"/>
-                <constraint firstItem="wsD-nW-3iu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="zYg-5j-Zp8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="b1c-eY-5SQ" secondAttribute="bottom" constant="6" id="FZZ-eS-Ucn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="b1c-eY-5SQ" secondAttribute="trailing" constant="6" id="MwK-mh-KTe"/>
+                <constraint firstItem="b1c-eY-5SQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="j80-oX-O3k"/>
+                <constraint firstItem="b1c-eY-5SQ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="rde-yS-rCk"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="bookCover" destination="wsD-nW-3iu" id="cQi-0i-BBO"/>
+                <outlet property="bookCover" destination="b1c-eY-5SQ" id="7MS-Mg-N3C"/>
             </connections>
-            <point key="canvasLocation" x="-125.59999999999999" y="52.623688155922046"/>
+            <point key="canvasLocation" x="-314" y="27"/>
         </view>
     </objects>
 </document>

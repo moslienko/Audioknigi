@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import ShadowImageView
 
 class AudioBookViewCell: UICollectionViewCell {
-    @IBOutlet weak var bookCover: UIImageView!
+   
+    @IBOutlet weak var bookCover: ShadowImageView!
 }

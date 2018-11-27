@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ShadowImageView
 
 class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRecognizerDelegate {
     private let reuseIdentifier = "cellAudioBook"
@@ -73,6 +73,7 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         let book = self.books[indexPath.row]
         
         cell.bookCover?.image = UIImage(data: book.image)
+        cell.bookCover?.shadowAlpha = CGFloat(0.95)
         
         return cell
     }

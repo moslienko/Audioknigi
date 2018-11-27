@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "002BF29FD70C3ADE590BBFC9C1A8B55C"
-               BlueprintName = "SwiftSoup"
+               BlueprintIdentifier = "46BEC5F7138482E205B52F2AA568AE40"
+               BlueprintName = "ShadowImageView"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SwiftSoup.framework">
+               BuildableName = "ShadowImageView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
