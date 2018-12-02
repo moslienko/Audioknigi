@@ -23,13 +23,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xic-hc-WKH">
-                                <rect key="frame" x="337" y="25" width="30" height="30"/>
-                                <state key="normal" title="&gt;"/>
+                                <rect key="frame" x="322" y="18" width="45" height="45"/>
+                                <state key="normal" image="play">
+                                    <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="xic-hc-WKH" firstAttribute="top" secondItem="tGn-yX-llV" secondAttribute="top" constant="25" id="MJD-CP-9Xe"/>
-                            <constraint firstAttribute="bottom" secondItem="xic-hc-WKH" secondAttribute="bottom" constant="25" id="Xgr-fi-mYI"/>
+                            <constraint firstItem="xic-hc-WKH" firstAttribute="top" secondItem="tGn-yX-llV" secondAttribute="top" constant="18" id="4Z5-wJ-qEM"/>
+                            <constraint firstAttribute="trailing" secondItem="xic-hc-WKH" secondAttribute="trailing" constant="8" id="edS-cC-24I"/>
                             <constraint firstAttribute="trailing" secondItem="xic-hc-WKH" secondAttribute="trailing" constant="8" id="q05-pT-Z61"/>
                             <constraint firstItem="xic-hc-WKH" firstAttribute="trailing" secondItem="tGn-yX-llV" secondAttribute="trailingMargin" id="wCt-gf-6WN"/>
                         </constraints>
@@ -74,4 +76,7 @@
             <point key="canvasLocation" x="-71.200000000000003" y="115.59220389805098"/>
         </view>
     </objects>
+    <resources>
+        <image name="play" width="45" height="45"/>
+    </resources>
 </document>
