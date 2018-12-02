@@ -13,8 +13,6 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
     private let reuseIdentifier = "cellAudioBook"
     
     var books = [AudioBooks]() // Список сохраненых книг
-    let currentBook = getLastBook() // Последняя прослушанная книга
-    let miniPlayerView = MiniPlayer.shared.getView(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height) //Панель мини плеера
     let audioPlayer = Player.shared //Аудиоплеер
 
     override func viewDidLoad() {
@@ -23,47 +21,21 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         
         self.books = getMyAudioBooks()
         self.collectionView.reloadData()
+        
         //Мини плеер
-        if self.currentBook.count > 0 {
-            self.view.addSubview(self.miniPlayerView)
-            //Задать интерфейс
-            self.miniPlayerView.bookName?.text = self.currentBook[0].name
-            self.miniPlayerView.coverImage?.image = UIImage(data: self.currentBook[0].image)
+        let player = Player.shared
+        //Найдена последняя открытая книга
+        if  player.initPlayerWithLastBook(){
+            //Добавить слой плеера
+            self.view.layer.addSublayer(player.getPlayerLayer())
+            player.initPlayer()
             
-            self.miniPlayerView.playerButton.addTarget(self, action: #selector(self.playActionMiniPlayer(_:)), for: UIControl.Event.touchUpInside)
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(self.openCurrentBook(_:)))
-            self.miniPlayerView.addGestureRecognizer(tap)
+            //Панель мини плеера
+            let miniPlayerView = MiniPlayer.shared.getView(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            self.view.addSubview(miniPlayerView)
             view.isUserInteractionEnabled = true
-            //Инициализация плеера
-            //todo в мини плеере должна быть основная логика управления воспроизведения книги
         }
     }
-    
-    @objc func playActionMiniPlayer(_ sender: UIButton?){
-        Player.shared.playPauseAction() //Работа с файлом
-        //Интерфейс
-        var playImg = "pause"
-        if Player.shared.player?.rate == 0 {
-            playImg = "play"
-        }
-        
-        self.miniPlayerView.playerButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
-    }
-    
-    @objc func openCurrentBook(_ sender: UITapGestureRecognizer? = nil){
-        let playerVC = self.storyboard?.instantiateViewController(withIdentifier: "PlayerVC_ID") as! PlayerViewController
-
-        let playlist = getChartersForBookID(self.currentBook[0].id)
-        
-        playerVC.book = [self.currentBook[0]]
-        playerVC.playlist = playlist
-        playerVC.charterID = self.currentBook[0].charter
-        playerVC.url.currentUrlStr = playlist[playerVC.charterID].url
-        
-        self.navigationController!.pushViewController(playerVC, animated: true)
-    }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,9 +48,7 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return books.count
     }
 
@@ -104,7 +74,6 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
                     //Используется мобильная версия сайта
                      url = url?.replacingOccurrences(of: "knigav", with: "m.knigav")
                 }
-                //https://s1.knigavuhe.ru/1/audio/1232/Tuman_0001.mp3?f=1
                 //Получить информацию о книге и сохранить
                 //TODO проверка на ввод правильного url
                 let bookInfo = getBookInfoFromURL(NSURL(string: url!)! as URL)

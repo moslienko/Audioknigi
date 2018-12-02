@@ -83,7 +83,6 @@ func getChartersForBookID(_ id:String) -> [Charter]{
         print(error)
         return chartersList
     }
-    return chartersList
 }
 
 

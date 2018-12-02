@@ -17,70 +17,57 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var timerButton: UIButton!
     @IBOutlet weak var playerSlider: UISlider!
     
-    var book = [AudioBooks]() //Данные о книги
-    var playlist = [Charter]() //Данные о главе
-    var charterID = 0 //Номер главы (с tableView)
-    
-    let url = playerURL() //URL файла
-    //todo Объединить??
-    let audioPlayer = Player.shared
+    let player = Player.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         playButton?.isHidden = true
         timerButton?.isHidden = true
-        
-        if self.book.count > 0 {
-            let bookInfo = self.book[0]
+                
+        if player.book.count > 0 {
+            let bookInfo = player.book[0]
             
-            self.url.bookID = bookInfo.id
-            self.url.charterName = self.playlist[charterID].name
-
             saveAsLastBook(id: bookInfo.id)
-
             self.navigationItem.title = bookInfo.name
-            
             backgroundImage?.image = UIImage(data: bookInfo.image)
             coverImage?.image = UIImage(data: bookInfo.image)
-            //todo переместить в мини плеер, в любом случае это в МОДЕЛЬ
-            let url = self.url.currentUrlStr
-            print ("mp3 url is:", url)
+            
+            playButton?.isHidden = false
+            timerButton?.isHidden = false
+            
+            self.player.initPlayer()
+            self.view.layer.addSublayer(self.player.getPlayerLayer())
+            
+            playerSlider?.minimumValue = 0
 
-                playButton?.isHidden = false
-                timerButton?.isHidden = false
+            let duration : CMTime = self.player.getDuration()
+            print ("duration:",duration)
+            let seconds : Float64 = CMTimeGetSeconds(duration)
+            print ("seconds:",seconds)
             
-                let playerItem:AVPlayerItem = AVPlayerItem(url: url)
-                self.audioPlayer.player = AVPlayer(playerItem: playerItem)
-                
-                let playerLayer=AVPlayerLayer(player: self.audioPlayer.player!)
-                playerLayer.frame=CGRect(x:0, y:0, width:10, height:50)
-                self.view.layer.addSublayer(playerLayer)
+            print ("current:",CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime()))
+
             
-                playerSlider?.minimumValue = 0
-            
-                let duration : CMTime = playerItem.asset.duration
-                let seconds : Float64 = CMTimeGetSeconds(duration)
+            if seconds > 0 {
                 
                 playerSlider?.maximumValue = Float(seconds)
                 playerSlider?.isContinuous = true
                 //Продолжить с места последней сохраненной остановки
-                if self.book[0].time != 0 {
-                    playerSlider?.value = self.book[0].time
-                    Player.shared.startPlayInTime(self.book[0].time)
+                if self.player.book[0].time != 0 {
+                    let audioTime = self.player.book[0].time
+                    
+                    playerSlider?.value = audioTime
+                    Player.shared.startPlayInTime(audioTime)
                 }
-            
-                NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+                else {
+                    playerSlider?.value = 0
+                    Player.shared.startPlayInTime(0)
+                }
+                playStop()
+                
+            }
 
-
-            
-        }
-    }
-    
-    @objc func finishedPlaying( _ myNotification:NSNotification) {
-        print ("END")
-        if self.playlist.indices.contains(self.charterID+1) {
-            print ("Play next:",self.playlist[self.charterID+1].name)
         }
     }
     
@@ -89,16 +76,20 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func playButtonClicked(_ sender: UIButton) {
-        audioPlayer.playPauseAction() //Работа с файлом
+        playStop()
+    }
+    
+    @IBAction func openTimer(_ sender: UIButton) {
+    }
+    
+    func playStop() {
+        self.player.playPauseAction() //Работа с файлом
         //Интерфейс
         var playImg = "pause"
-        if Player.shared.player?.rate == 0 {
+        if self.player.player?.rate == 0 {
             playImg = "play"
         }
         //todo сохранение времени остановки
         self.playButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
-    }
-    
-    @IBAction func openTimer(_ sender: UIButton) {
     }
 }

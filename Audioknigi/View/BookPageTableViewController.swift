@@ -71,14 +71,14 @@ class BookPageTableViewController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 if indexPath.first != nil {
                     let bookData = self.myBook[0]
-                    let charterData = self.charters[indexPath.row]
 
-                    if let openBookVC = segue.destination as? PlayerViewController {
-                        openBookVC.book = [bookData] //Данные о книги
-                        openBookVC.playlist = charters //Глава
-                        openBookVC.charterID = indexPath.row //Порядковый номер главы
-                        //Инициализация плеера
-                        openBookVC.url.currentUrlStr = charters[indexPath.row].url
+                    if segue.destination is PlayerViewController {
+                        let player =  Player.shared
+                        
+                        player.url = charters[indexPath.row].url
+                        player.charterID = indexPath.row //Порядковый номер главы
+                        player.book = [bookData] //Данные о книги
+                        player.playlist = charters //Главы
                     }
                 }
             }
