@@ -18,7 +18,9 @@ class playerURL {
     var charterName:String = "" //Название главы
     
     var currentUrlStr: URL = URL.init(string: "google.com")! //URL текущей главы книги
-    var storagePath:Int = 0 //Какой сервер хранилища используется
+    var storagePath:Int = 0 //Сервер хранилища используется
+    var extraStoragePath:Int = 0 //На сервере
+
     var urlAlgorithm = urlGenerateAlgorithm.native //Каким способом получать url
     
     /**
@@ -26,7 +28,7 @@ class playerURL {
      - Returns: URL для доступа к файлу
      */
     func generateCyrillicURL() -> URL {
-        let url = "https://s3.knigavuhe.ru/\(self.storagePath)/audio/\(self.bookID)/\(self.charterName).mp3"
+        let url = "https://s\(self.storagePath).knigavuhe.ru/\(self.extraStoragePath)/audio/\(self.bookID)/\(self.charterName).mp3"
         //Кодирование
         let encodedURL = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         let urlBook = URL.init(string: encodedURL!)
@@ -47,12 +49,14 @@ class playerURL {
         let latinURL = latinString?.applyingTransform(StringTransform.stripDiacritics, reverse: false)
         //Убирает пробелы
         let latinUrlWithoutSpaces = latinURL?.replacingOccurrences(of: " ", with: "")
+
+        //let latinUrlWithoutSpaces = latinURL?.replacingOccurrences(of: " ", with: "-")
         //Заменяет символ _
         let latinUrlWithoutSymbol = latinUrlWithoutSpaces?.replacingOccurrences(of: "_", with: "-")
         //Без заглавных букв
         let latinUrl = latinUrlWithoutSymbol?.lowercased()
         //Итоговый путь
-        let urlLatin = "https://s3.knigavuhe.ru/\(self.storagePath)/audio/\(self.bookID)/\(String(describing: latinUrl!)).mp3"
+        let urlLatin = "https://s\(self.storagePath).knigavuhe.ru/\(self.extraStoragePath)/audio/\(self.bookID)/\(String(describing: latinUrl!)).mp3"
         //Создание URL
         let urlBookLatin = URL.init(string: urlLatin)
         
@@ -81,28 +85,41 @@ class playerURL {
      - Returns: Статус выполнения операции
      */
     func checkAudioURL() -> Bool {
-        for i in 1...3 {
+        //https://s6.knigavuhe.ru/1/audio/18529/01-strana-radosti.mp3?f=1
+        //https://s6.knigavuhe.ru/6/audio/18529/01-strana-radosti.mp3
+        var urls = [(native: URL, latin: URL)]()
+        
+        for i in 1...6 {
             self.storagePath = i
-            
-            let urlBook = encodeAudioURL()
-            if urlBook.native != URL.init(string: "google.com") {
-                print ("we check:",urlBook)
-                if isValidSoundURL(urlBook.latin) {
-                    self.urlAlgorithm = .latin
-                    self.currentUrlStr = urlBook.latin
-                    return true
-                }
-                if isValidSoundURL(urlBook.native) {
-                    self.urlAlgorithm = .native
-                    self.currentUrlStr = urlBook.native
-                    return true
-                }
+            for j in 1...3 {
+                self.extraStoragePath = j
+                urls.append(encodeAudioURL())
             }
+        }
+            print ("urls:",urls)
+            
+            for url in urls {
+                    if url.native != URL.init(string: "google.com") {
+                        print ("we check:",url)
+                        if isValidSoundURL(url.latin) {
+                            self.urlAlgorithm = .latin
+                            self.currentUrlStr = url.latin
+                            return true
+                        }
+                        if isValidSoundURL(url.native) {
+                            self.urlAlgorithm = .native
+                            self.currentUrlStr = url.native
+                            return true
+                        }
+            }
+                
+
         }
         return false
     }
 
 }
+
 
 /**
  Проверка, существует ли файл по указанному адресу
@@ -113,8 +130,14 @@ func isValidSoundURL(_ url: URL) -> Bool {
     let semaphore = DispatchSemaphore(value: 0)
     
     var result = false
-    
-    let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+
+    let urlconfig = URLSessionConfiguration.default
+    //Не скачивать файл, секунда для получения статус кода
+    urlconfig.timeoutIntervalForRequest = 1.0
+    urlconfig.timeoutIntervalForResource = 1.0
+    let session = URLSession(configuration: urlconfig)
+ 
+    let task = session.dataTask(with: url) {(_, response, error) in
         if response != nil {
             let code = (response as! HTTPURLResponse).statusCode
             print("For url \(url) code is \(code)")

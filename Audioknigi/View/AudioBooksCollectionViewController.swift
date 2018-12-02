@@ -14,6 +14,8 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
     
     var books = [AudioBooks]() // Список сохраненых книг
     let currentBook = getLastBook() // Последняя прослушанная книга
+    let miniPlayerView = MiniPlayer.shared.getView(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height) //Панель мини плеера
+    let audioPlayer = Player.shared //Аудиоплеер
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,31 +23,43 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         
         self.books = getMyAudioBooks()
         self.collectionView.reloadData()
-        
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-
-        let view = MiniPlayerView.instanceFromNib()
-        view.frame = CGRect(x: 0, y: height-100, width: width, height: 100)
-        
+        //Мини плеер
         if self.currentBook.count > 0 {
-            view.bookName?.text = self.currentBook[0].name
-            view.coverImage?.image = UIImage(data: self.currentBook[0].image)
+            self.view.addSubview(self.miniPlayerView)
+            //Задать интерфейс
+            self.miniPlayerView.bookName?.text = self.currentBook[0].name
+            self.miniPlayerView.coverImage?.image = UIImage(data: self.currentBook[0].image)
+            
+            self.miniPlayerView.playerButton.addTarget(self, action: #selector(self.playActionMiniPlayer(_:)), for: UIControl.Event.touchUpInside)
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.openCurrentBook(_:)))
-            view.addGestureRecognizer(tap)
+            self.miniPlayerView.addGestureRecognizer(tap)
             view.isUserInteractionEnabled = true
-
-            self.view.addSubview(view)
+            //Инициализация плеера
+            //todo в мини плеере должна быть основная логика управления воспроизведения книги
         }
+    }
+    
+    @objc func playActionMiniPlayer(_ sender: UIButton?){
+        Player.shared.playPauseAction() //Работа с файлом
+        //Интерфейс
+        var playImg = "pause"
+        if Player.shared.player?.rate == 0 {
+            playImg = "play"
+        }
+        
+        self.miniPlayerView.playerButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
     }
     
     @objc func openCurrentBook(_ sender: UITapGestureRecognizer? = nil){
         let playerVC = self.storyboard?.instantiateViewController(withIdentifier: "PlayerVC_ID") as! PlayerViewController
 
+        let playlist = getChartersForBookID(self.currentBook[0].id)
+        
         playerVC.book = [self.currentBook[0]]
+        playerVC.playlist = playlist
         playerVC.charterID = self.currentBook[0].charter
-        playerVC.charter = getCharterBook(url: self.currentBook[0].url)
+        playerVC.url.currentUrlStr = playlist[playerVC.charterID].url
         
         self.navigationController!.pushViewController(playerVC, animated: true)
     }
@@ -90,12 +104,18 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
                     //Используется мобильная версия сайта
                      url = url?.replacingOccurrences(of: "knigav", with: "m.knigav")
                 }
+                //https://s1.knigavuhe.ru/1/audio/1232/Tuman_0001.mp3?f=1
                 //Получить информацию о книге и сохранить
                 //TODO проверка на ввод правильного url
                 let bookInfo = getBookInfoFromURL(NSURL(string: url!)! as URL)
                 print ("Book:", bookInfo)
                 if bookInfo != nil {
+                    let charters = getCharterBook(url: NSURL(string: url!)! as URL, bookID: (bookInfo?.id)!)
+                    print ("Charters:",charters)
                     if createBook(bookInfo: bookInfo!) {
+                        for charter in charters {
+                            saveCharters(charterData: charter)
+                        }
                         self.books = getMyAudioBooks()
                         self.collectionView.reloadData()
                     }

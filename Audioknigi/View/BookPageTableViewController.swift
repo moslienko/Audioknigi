@@ -12,7 +12,7 @@ class BookPageTableViewController: UITableViewController {
     private let reuseIdentifier = "cellCharter"
     
     var myBook = [AudioBooks]()
-    var charters = [Audio]()
+    var charters = [Charter]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +21,8 @@ class BookPageTableViewController: UITableViewController {
         if self.myBook.count > 0 {
             print ("get:",self.myBook)
             self.navigationItem.title = self.myBook[0].name
-            self.charters = getCharterBook(url: self.myBook[0].url)
-            //print ("List:",self.charters)
+            self.charters = getChartersForBookID(self.myBook[0].id)
+            print ("List:",self.charters)
             self.tableView.reloadData()
         }
     }
@@ -41,7 +41,7 @@ class BookPageTableViewController: UITableViewController {
         let info = self.charters[indexPath.row]
         
         cell.textLabel?.text = info.name
-        cell.detailTextLabel?.text = info.time
+        cell.detailTextLabel?.text = info.duration
 
         return cell
     }
@@ -57,7 +57,7 @@ class BookPageTableViewController: UITableViewController {
         let alert = UIAlertController(title: "Delete", message: "Delete audio book?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ (UIAlertAction)in
-            if deleteBook(id: self.myBook[0].id) {
+            if deleteBook(id: self.myBook[0].id),deleteChartersForBookID(self.myBook[0].id) {
                 self.navigationController?.popViewController(animated: true)
             }
         }))
@@ -75,9 +75,10 @@ class BookPageTableViewController: UITableViewController {
 
                     if let openBookVC = segue.destination as? PlayerViewController {
                         openBookVC.book = [bookData] //Данные о книги
-                        openBookVC.charter = [charterData] //Глава
+                        openBookVC.playlist = charters //Глава
                         openBookVC.charterID = indexPath.row //Порядковый номер главы
-
+                        //Инициализация плеера
+                        openBookVC.url.currentUrlStr = charters[indexPath.row].url
                     }
                 }
             }

@@ -9,11 +9,6 @@
 import Foundation
 import SwiftSoup
 
-struct Audio {
-    var name: String //Название главы
-    var time: String // Продолжительность
-}
-
 /**
  Получить HTML содержимое страницы
  - Parameter url: URL страницы
@@ -32,10 +27,11 @@ func getHTMLContent(url:URL) -> String {
 /**
  Получить список глав аудио книги
  - Parameter url: URL страницы
+ - Parameter bookID: ID аудиокниги
  - Returns: Строка, содержащая код страницы
  */
-func getCharterBook(url:URL) -> [Audio] {
-    var audioList = [Audio]()
+func getCharterBook(url:URL,bookID:String) -> [Charter] {
+    var audioList = [Charter]()
     
     do {
         
@@ -48,11 +44,39 @@ func getCharterBook(url:URL) -> [Audio] {
                 let playlistDiv: Element = try doc.select("div.book_player_playlist").first()!
                 let playlistItem: Elements = try playlistDiv.select("div.book_player_playlist_item")
                 
-                for i in playlistItem.enumerated() {
-                    audioList.append(Audio(
-                        name: try i.element.select("div.book_player_playlist_item_name").first()!.text(),
-                        time: try i.element.select("div.book_player_playlist_item_time").first()!.text()
-                    ))
+                
+                let player = playerURL()
+                player.bookID = bookID
+                /* Для ускорения работы проверяется подлинность url только первой главы.
+                   В результате получаем тип алгоритма и номер сервера */
+                player.charterName = try playlistItem.array()[0].select("div.book_player_playlist_item_name").first()!.text()
+                
+                if player.checkAudioURL() {
+
+                    print ("absolutePath:","https://s\(player.storagePath).knigavuhe.ru/\(player.storagePath)/audio/\(bookID)/ with algoritm: \(player.urlAlgorithm)")
+                    
+                    for (i,data) in playlistItem.enumerated() {
+                        
+                        
+                        player.charterName = try data.select("div.book_player_playlist_item_name").first()!.text()
+                        /* Алгоритм и сервер не меняются каждую главу, поэтому используются данные,
+                            полученные выше. */
+                        let urlArr = player.encodeAudioURL()
+                        var url = urlArr.latin
+                        
+                        if player.urlAlgorithm == .native {
+                             url = urlArr.native
+                        }
+
+                            audioList.append(Charter(
+                                number: i,
+                                bookID: bookID,
+                                name: try data.select("div.book_player_playlist_item_name").first()!.text(),
+                                duration: try data.select("div.book_player_playlist_item_time").first()!.text(),
+                                url: url
+                            ))
+                    }
+                    
                 }
                 
                 return audioList
