@@ -22,19 +22,14 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         self.books = getMyAudioBooks()
         self.collectionView.reloadData()
         
-        //Мини плеер
+        //Загрузить мини плеер
         let player = Player.shared
         //Найдена последняя открытая книга
-        if  player.initPlayerWithLastBook(){
-            //Добавить слой плеера
-            self.view.layer.addSublayer(player.getPlayerLayer())
-            player.initPlayer()
-            
-            //Панель мини плеера
-            let miniPlayerView = MiniPlayer.shared.getView(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            self.view.addSubview(miniPlayerView)
-            view.isUserInteractionEnabled = true
+        if  player.initPlayerWithLastBook() {
+            let miniPlayer = MiniPlayer.shared
+            self.view.layer.addSublayer(miniPlayer.initMiniPlayer())
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

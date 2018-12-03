@@ -27,6 +27,11 @@ class BookPageTableViewController: UITableViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        MiniPlayer.shared.showMiniPlayer()
+    }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -79,6 +84,8 @@ class BookPageTableViewController: UITableViewController {
                         player.charterID = indexPath.row //Порядковый номер главы
                         player.book = [bookData] //Данные о книги
                         player.playlist = charters //Главы
+                        
+                        //todo Обновить панель мини плеера
                     }
                 }
             }

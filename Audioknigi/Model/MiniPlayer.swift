@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 import UIKit
 
 extension MiniPlayerView {
@@ -25,14 +26,9 @@ extension MiniPlayerView {
      */
     @objc func playActionMiniPlayer(_ sender: UIButton?){
         Player.shared.playPauseAction() //Работа с файлом
-        //Интерфейс
-        var playImg = "pause"
-        if Player.shared.player?.rate == 0 {
-            playImg = "play"
-        }
-        
-        self.playerButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
+        self.playerButton?.setImage(Player.shared.getPlayButtonImage(), for: UIControl.State.normal) //Интерфейс
     }
+    
     /**
      Открыть полноценный экран плеера
      */
@@ -48,14 +44,16 @@ extension MiniPlayerView {
     
 }
 
+
 class MiniPlayer {
     static let shared = MiniPlayer()
-    
+    let miniPlayerView = getView(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+
     /**
      Получить панель мини плеера
      - Returns: Слой мини плеера
      */
-    func getView(width:CGFloat, height: CGFloat) -> MiniPlayerView {
+    static func getView(width:CGFloat, height: CGFloat) -> MiniPlayerView {
         let view = MiniPlayerView.instanceFromNib()
         view.frame = CGRect(x: 0, y: height-100, width: width, height: 80)
         
@@ -65,8 +63,37 @@ class MiniPlayer {
             view.bookName?.text = player.book[0].name
             view.charterName?.text = player.playlist[player.charterID].name
             view.coverImage?.image = UIImage(data: player.book[0].image)
+            view.playerButton?.setImage(player.getPlayButtonImage(), for: UIControl.State.normal)
         }
         
         return view
+    }
+    
+    /**
+     Вставить мини плеер на экран приложения
+     - Returns: Слой AVPlayer
+     */
+    func initMiniPlayer() -> AVPlayerLayer {
+        let player = Player.shared
+        player.initPlayer()
+        
+        let window = UIApplication.shared.keyWindow!
+        window.addSubview(self.miniPlayerView);
+        
+        return player.getPlayerLayer()
+    }
+    
+    /**
+     Показать панель мини плеера
+     */
+    func showMiniPlayer() {
+        self.miniPlayerView.isHidden = false
+    }
+    
+    /**
+     Скрыть панель мини плеера
+     */
+    func hideMiniPlayer() {
+        self.miniPlayerView.isHidden = true
     }
 }

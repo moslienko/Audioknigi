@@ -21,6 +21,7 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MiniPlayer.shared.hideMiniPlayer()
         
         playButton?.isHidden = true
         timerButton?.isHidden = true
@@ -39,8 +40,6 @@ class PlayerViewController: UIViewController {
             self.player.initPlayer()
             self.view.layer.addSublayer(self.player.getPlayerLayer())
             
-            playerSlider?.minimumValue = 0
-
             let duration : CMTime = self.player.getDuration()
             print ("duration:",duration)
             let seconds : Float64 = CMTimeGetSeconds(duration)
@@ -48,7 +47,6 @@ class PlayerViewController: UIViewController {
             
             print ("current:",CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime()))
 
-            
             if seconds > 0 {
                 
                 playerSlider?.maximumValue = Float(seconds)
@@ -89,7 +87,9 @@ class PlayerViewController: UIViewController {
         if self.player.player?.rate == 0 {
             playImg = "play"
         }
-        //todo сохранение времени остановки
+
+        savePlayer(id: player.book[0].id, charter: player.charterID, time: Float(CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime())))
+        
         self.playButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
     }
 }

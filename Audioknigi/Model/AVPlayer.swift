@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import AVFoundation
 
 class Player {
@@ -27,7 +28,7 @@ class Player {
         let currentBook = getLastBook() // Последняя прослушанная книга
         
         if currentBook.count > 0 {
-            //TODO продолжение воспроизведения с мини плеера
+            
             print ("TIME:",currentBook[0].time)
             
             let playlist = getChartersForBookID(currentBook[0].id)
@@ -124,4 +125,18 @@ class Player {
             }
         }
     }
+    
+    /**
+     Получить изображение для кнопки воспроизведения
+     - Returns: Изображение паузы или воспроизведения
+     */
+    func getPlayButtonImage() -> UIImage {
+        var playImg = "pause"
+        if Player.shared.player?.rate == 0 {
+            playImg = "play"
+        }
+        
+        return UIImage(named: playImg)!
+    }
+    
 }
