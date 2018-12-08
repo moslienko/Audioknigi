@@ -54,18 +54,128 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="AudioBook" id="pIX-FZ-eI7">
                         <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="EHl-1b-Hrb"/>
                             <barButtonItem systemItem="trash" id="NIA-u1-YoL">
                                 <connections>
                                     <action selector="deleteBookAction:" destination="tSj-xm-di0" id="Kxb-Q7-6Wj"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="action" id="EHl-1b-Hrb"/>
+                            <barButtonItem style="plain" systemItem="edit" id="KbW-uk-cAg">
+                                <connections>
+                                    <segue destination="ZXQ-LX-UvA" kind="show" identifier="editBook" id="EWo-J4-JgR"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Py-bH-B9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1295" y="-67"/>
+        </scene>
+        <!--Edit audio book-->
+        <scene sceneID="Zzv-gm-v5d">
+            <objects>
+                <viewController storyboardIdentifier="editBook_VC_ID" id="ZXQ-LX-UvA" customClass="EditAudioBookViewController" customModule="Audioknigi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MwS-kn-7Jh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtE-ae-SGh">
+                                <rect key="frame" x="16" y="132" width="343" height="174"/>
+                                <subviews>
+                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Rl2-0Y-cgT" customClass="ShadowImageView" customModule="ShadowImageView">
+                                        <rect key="frame" x="8" y="23" width="91" height="113"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8u-5I-cku">
+                                        <rect key="frame" x="107" y="17" width="48" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9p-M6-Em6">
+                                        <rect key="frame" x="107" y="84" width="48" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name audiobook" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCK-Hz-gGk">
+                                        <rect key="frame" x="107" y="46" width="228" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="64i-v8-Oj6"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="228" id="KAm-NW-3tN"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKc-bF-1bd">
+                                        <rect key="frame" x="107" y="106" width="133" height="30"/>
+                                        <state key="normal" title="Choose from photo">
+                                            <color key="titleColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseUserPhoto:" destination="ZXQ-LX-UvA" eventType="touchUpInside" id="Vz6-1c-QAO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5e-9e-ld7">
+                                        <rect key="frame" x="275" y="106" width="60" height="30"/>
+                                        <state key="normal" title="Standart">
+                                            <color key="titleColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="standartImageClick:" destination="ZXQ-LX-UvA" eventType="touchUpInside" id="Izj-gC-yTi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="leading" secondItem="S8u-5I-cku" secondAttribute="leading" id="4Wg-A8-5Rq"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="leading" secondItem="h9p-M6-Em6" secondAttribute="leading" id="9aG-yv-DpL"/>
+                                    <constraint firstItem="lKc-bF-1bd" firstAttribute="baseline" secondItem="J5e-9e-ld7" secondAttribute="baseline" id="ATe-ry-eUp"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="leading" secondItem="Rl2-0Y-cgT" secondAttribute="trailing" constant="8" symbolic="YES" id="EDH-7s-LDp"/>
+                                    <constraint firstItem="Rl2-0Y-cgT" firstAttribute="top" secondItem="HtE-ae-SGh" secondAttribute="top" constant="23" id="H8x-wn-zDU"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="top" secondItem="S8u-5I-cku" secondAttribute="bottom" constant="8" symbolic="YES" id="I16-TB-DQp"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S8u-5I-cku" secondAttribute="trailing" constant="20" symbolic="YES" id="UjD-bY-3gV"/>
+                                    <constraint firstItem="lKc-bF-1bd" firstAttribute="top" secondItem="h9p-M6-Em6" secondAttribute="bottom" constant="1" id="ZgO-C4-pmq"/>
+                                    <constraint firstItem="lKc-bF-1bd" firstAttribute="leading" secondItem="Rl2-0Y-cgT" secondAttribute="trailing" constant="8" id="bSp-nW-4gF"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="leading" secondItem="Rl2-0Y-cgT" secondAttribute="trailing" constant="8" id="cQW-Pe-N3h"/>
+                                    <constraint firstItem="Rl2-0Y-cgT" firstAttribute="leading" secondItem="HtE-ae-SGh" secondAttribute="leadingMargin" id="csk-Mb-HUw"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="leading" secondItem="lKc-bF-1bd" secondAttribute="leading" id="i6O-Nq-1DP"/>
+                                    <constraint firstItem="lKc-bF-1bd" firstAttribute="bottom" secondItem="Rl2-0Y-cgT" secondAttribute="bottom" id="ivy-pH-gOM"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h9p-M6-Em6" secondAttribute="trailing" constant="20" symbolic="YES" id="lX4-j4-mBU"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="trailing" secondItem="J5e-9e-ld7" secondAttribute="trailing" id="mBQ-L1-FsD"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="trailing" secondItem="HtE-ae-SGh" secondAttribute="trailingMargin" id="me8-MB-A6g"/>
+                                    <constraint firstItem="pCK-Hz-gGk" firstAttribute="top" secondItem="HtE-ae-SGh" secondAttribute="top" constant="46" id="nQh-Zv-WV6"/>
+                                    <constraint firstItem="h9p-M6-Em6" firstAttribute="top" secondItem="pCK-Hz-gGk" secondAttribute="bottom" constant="8" symbolic="YES" id="o1J-tj-WBb"/>
+                                    <constraint firstItem="lKc-bF-1bd" firstAttribute="leading" secondItem="Rl2-0Y-cgT" secondAttribute="trailing" constant="8" symbolic="YES" id="pXt-Fg-3PF"/>
+                                    <constraint firstItem="J5e-9e-ld7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lKc-bF-1bd" secondAttribute="trailing" constant="8" symbolic="YES" id="tbT-zC-RJa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HtE-ae-SGh" firstAttribute="leading" secondItem="Erj-Rf-0fz" secondAttribute="leading" constant="16" id="CKu-ku-4jm"/>
+                            <constraint firstItem="HtE-ae-SGh" firstAttribute="top" secondItem="Erj-Rf-0fz" secondAttribute="top" constant="16" id="FXf-qP-1CO"/>
+                            <constraint firstItem="Erj-Rf-0fz" firstAttribute="trailing" secondItem="HtE-ae-SGh" secondAttribute="trailing" constant="16" id="T5o-GJ-Jze"/>
+                            <constraint firstItem="Erj-Rf-0fz" firstAttribute="bottom" secondItem="HtE-ae-SGh" secondAttribute="bottom" constant="361" id="rMq-Kz-6S6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Erj-Rf-0fz"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit audio book" id="cvb-Na-6R3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="uf2-9q-Fi1">
+                            <connections>
+                                <action selector="saveBook:" destination="ZXQ-LX-UvA" id="nNu-Ra-oMy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="coverImage" destination="Rl2-0Y-cgT" id="PXx-fO-UpN"/>
+                        <outlet property="nameAudioBook" destination="pCK-Hz-gGk" id="EBG-gf-JN5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JpB-qh-YgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2037.5999999999999" y="283.80809595202402"/>
         </scene>
         <!--Play audio book-->
         <scene sceneID="cWP-Hb-g5n">
@@ -104,21 +214,26 @@
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJA-fg-New">
                                 <rect key="frame" x="49" y="361" width="45" height="45"/>
-                                <state key="normal" image="play"/>
+                                <color key="tintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="play">
+                                    <color key="titleColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="playButtonClicked:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="0ko-6g-IwB"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lxZ-co-jzf">
                                 <rect key="frame" x="47" y="331" width="282" height="31"/>
-                                <color key="minimumTrackTintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="minimumTrackTintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="playerSliderChange:" destination="nB9-Q5-BKE" eventType="valueChanged" id="nq0-0H-aXQ"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8m-dE-8f1">
                                 <rect key="frame" x="49" y="414" width="34" height="30"/>
-                                <state key="normal" title="Time"/>
+                                <state key="normal" title="Time">
+                                    <color key="titleColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="openTimer:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="4PV-JU-tx7"/>
                                 </connections>
@@ -159,7 +274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fV-69-wxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021.5999999999999" y="-67.016491754122939"/>
+            <point key="canvasLocation" x="2038" y="-371"/>
         </scene>
         <!--AudioBooks-->
         <scene sceneID="jyI-cX-NVY">
@@ -213,7 +328,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dFk-Ou-P08">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.9137254901960784" green="0.25098039215686274" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

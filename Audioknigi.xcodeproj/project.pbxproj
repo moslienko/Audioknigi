@@ -27,6 +27,7 @@
 		956219F421A974A100F49C23 /* AudioBooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */; };
 		956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F521A9751C00F49C23 /* AudioBooks.swift */; };
 		95714BB721B2474F00A10A94 /* BookCharter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95714BB621B2474F00A10A94 /* BookCharter.swift */; };
+		957B754A21B6392C00F3B5DB /* EditAudioBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audioknigi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		950641E321ABD55A00994EF5 /* PlayerURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerURL.swift; sourceTree = "<group>"; };
 		950641E521AC1CA200994EF5 /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
+		9521ACAE21B5586300E14CC4 /* Audioknigi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audioknigi.entitlements; sourceTree = "<group>"; };
 		9534978F21AD3BFE004474AC /* MiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayer.swift; sourceTree = "<group>"; };
 		95588FD121AAA206001925E9 /* MiniPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniPlayerView.xib; sourceTree = "<group>"; };
 		95588FD321AAA235001925E9 /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooksCollectionViewController.swift; sourceTree = "<group>"; };
 		956219F521A9751C00F49C23 /* AudioBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooks.swift; sourceTree = "<group>"; };
 		95714BB621B2474F00A10A94 /* BookCharter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCharter.swift; sourceTree = "<group>"; };
+		957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAudioBookViewController.swift; sourceTree = "<group>"; };
 		BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +92,7 @@
 		956219D221A9216700F49C23 /* Audioknigi */ = {
 			isa = PBXGroup;
 			children = (
+				9521ACAE21B5586300E14CC4 /* Audioknigi.entitlements */,
 				956219EC21A95C2300F49C23 /* Model */,
 				956219ED21A95C2700F49C23 /* View */,
 				956219EE21A95C2B00F49C23 /* SupportedFiles */,
@@ -120,6 +124,7 @@
 				95588FD121AAA206001925E9 /* MiniPlayerView.xib */,
 				95588FD321AAA235001925E9 /* MiniPlayerView.swift */,
 				95588FD721AABF2C001925E9 /* PlayerViewController.swift */,
+				957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +209,11 @@
 				TargetAttributes = {
 					956219CF21A9216700F49C23 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -298,6 +308,7 @@
 				956219E921A9254A00F49C23 /* AudioBookCharter.swift in Sources */,
 				95588FD621AAAC78001925E9 /* Player.swift in Sources */,
 				956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */,
+				957B754A21B6392C00F3B5DB /* EditAudioBookViewController.swift in Sources */,
 				95714BB721B2474F00A10A94 /* BookCharter.swift in Sources */,
 				95588FD821AABF2C001925E9 /* PlayerViewController.swift in Sources */,
 			);
@@ -446,6 +457,7 @@
 			baseConfigurationReference = BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Audioknigi/Audioknigi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CVFSZXK7VF;
 				INFOPLIST_FILE = Audioknigi/Info.plist;
@@ -466,6 +478,7 @@
 			baseConfigurationReference = 12146830F1234AC7D79B3C0C /* Pods-Audioknigi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Audioknigi/Audioknigi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CVFSZXK7VF;
 				INFOPLIST_FILE = Audioknigi/Info.plist;

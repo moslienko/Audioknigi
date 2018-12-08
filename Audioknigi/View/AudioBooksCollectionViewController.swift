@@ -17,6 +17,9 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.shared.shortcutItems = getHomeIconShortcuts()
+        
         self.collectionView?.register(UINib(nibName: "AudioBookViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         self.books = getMyAudioBooks()
@@ -38,6 +41,20 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         self.collectionView.reloadData()
     }
 
+    /**
+     Получить элементы shortcuts для иконки приложения (3D Touch)
+     */
+    func getHomeIconShortcuts() -> [UIApplicationShortcutItem] {
+        var link = [UIApplicationShortcutItem]()
+        
+        let lastBook = getLastBook()
+        if lastBook.count > 0 {
+              link.append(UIApplicationShortcutItem(type: "com.moslienko.Audioknigi.lastBookPlay", localizedTitle: "Play \"Last\"", localizedSubtitle: lastBook[0].name, icon: UIApplicationShortcutIcon(templateImageName: "play"), userInfo: nil))
+        }
+      
+        return link
+    }
+    
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -57,7 +74,41 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         return cell
     }
     
+    /**
+     Модальное окно с выбором способа добавления аудиокниги
+     */
     @IBAction func addAudioBook(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New Audiobook", message: "Choose way", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Add manual from URL", style: .default , handler:{ (UIAlertAction)in
+            self.addFromCustomUrl()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Auto parce from knigavuhe URL", style: .default , handler:{ (UIAlertAction)in
+            self.addFromKnigaVuhe()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    /**
+     Добавить пустую аудокнигу
+     */
+    func addFromCustomUrl() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let playerVC = storyboard.instantiateViewController(withIdentifier: "editBook_VC_ID") as! EditAudioBookViewController
+        
+        if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+            navigationController.pushViewController(playerVC, animated: true)
+        }
+    }
+    
+    /**
+     Добавить аудиокнигу используя ее url с сайта knigavuhe
+     */
+    func addFromKnigaVuhe() {
         let alert = UIAlertController(title: "Enter URL", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (alertAction) in
@@ -67,7 +118,7 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
                 var url = textField.text
                 if (url?.contains("m.kniga") == false) {
                     //Используется мобильная версия сайта
-                     url = url?.replacingOccurrences(of: "knigav", with: "m.knigav")
+                    url = url?.replacingOccurrences(of: "knigav", with: "m.knigav")
                 }
                 //Получить информацию о книге и сохранить
                 //TODO проверка на ввод правильного url
@@ -99,6 +150,7 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         
         self.present(alert, animated:true, completion: nil)
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.cellForItem(at: indexPath) != nil {

@@ -17,7 +17,9 @@ class BookPageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
 
+    func loadBookCharter() {
         if self.myBook.count > 0 {
             print ("get:",self.myBook)
             self.navigationItem.title = self.myBook[0].name
@@ -26,10 +28,11 @@ class BookPageTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         MiniPlayer.shared.showMiniPlayer()
+        loadBookCharter()
     }
     
     // MARK: - Table view data source
@@ -57,6 +60,20 @@ class BookPageTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            print("favorite button tapped")
+        }
+        edit.backgroundColor = .blue
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            print("share button tapped")
+        }
+        delete.backgroundColor = .red
+        
+        return [edit, delete]
+    }
    
     @IBAction func deleteBookAction(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Delete", message: "Delete audio book?", preferredStyle: .alert)
@@ -72,6 +89,12 @@ class BookPageTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editBook" {
+            if let editVC = segue.destination as? EditAudioBookViewController {
+                editVC.bookInfo = self.myBook
+            }
+        }
+        
         if segue.identifier == "playBook" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 if indexPath.first != nil {
@@ -86,6 +109,7 @@ class BookPageTableViewController: UITableViewController {
                         player.playlist = charters //Главы
                         
                         //todo Обновить панель мини плеера
+                        player.player?.pause()
                     }
                 }
             }

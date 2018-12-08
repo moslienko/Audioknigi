@@ -17,6 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem
+        {
+            if shortcutItem.type == "com.moslienko.Audioknigi.lastBookPlay" {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewController : UIViewController = storyboard.instantiateViewController(withIdentifier :"PlayerVC_ID") as! PlayerViewController
+                if let navigationController = self.window?.rootViewController as? UINavigationController {
+                    navigationController.pushViewController(initialViewController, animated: true)
+                }
+                else {
+                    print("Navigation Controller not Found")
+                }
+            }
+        }
+        
         return true
     }
 

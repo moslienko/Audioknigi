@@ -19,6 +19,16 @@ struct AudioBooks {
 }
 
 /**
+ Получает рандомную строку (как идентификатор)
+ - Parameter length: Длина строки
+ - Returns: строка
+ */
+func randomString(length: Int) -> String {
+    let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    return String((0...length-1).map{ _ in letters.randomElement()! })
+}
+
+/**
  Проверка, сохранена ли уже такая аудиокнига
  - Parameter id: Идентификатор
  - Returns: Результат
