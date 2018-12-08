@@ -123,3 +123,85 @@ func deleteChartersForBookID(_ id:String) ->Bool{
     
     return false
 }
+
+
+/**
+ Обновить главу
+ - Parameter charterInfo: Данные о главе
+ - Returns: Статус выполнения операции
+ */
+func updateCharter(charterInfo:Charter) -> Bool{
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Charters")
+    fetchRequest.predicate = NSPredicate(format: "bookID = %@ AND number = %@", argumentArray:[charterInfo.bookID,charterInfo.number])
+    
+    do
+    {
+        let charter = try managedContext.fetch(fetchRequest)
+        
+        if charter.count > 0 {
+            let objectUpdateCharter = charter[0] as! NSManagedObject
+            objectUpdateCharter.setValue(charterInfo.name, forKey: "name")
+            objectUpdateCharter.setValue(charterInfo.url, forKey: "url")
+            objectUpdateCharter.setValue(charterInfo.number, forKey: "number")
+            objectUpdateCharter.setValue(charterInfo.duration, forKey: "duration")
+
+            do{
+                try managedContext.save()
+                return true
+            }
+            catch
+            {
+                print(error)
+                return false
+            }
+        }
+       
+    }
+    catch
+    {
+        print(error)
+        return false
+    }
+    return false
+}
+
+/**
+ Удалить главу
+ - Parameter idBook: Идентификатор книги
+ - Parameter numCharter: Номер главы
+ - Returns: Статус выполнения операции
+ */
+func deleteCharter(idBook:String, numCharter:Int) ->Bool{
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false}
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Charters")
+    fetchRequest.predicate = NSPredicate(format: "bookID = %@ AND number = %@", argumentArray:[idBook,numCharter])
+
+    do
+    {
+        let charter = try managedContext.fetch(fetchRequest)
+        if charter.count > 0 {
+            let objectToDelete = charter[0] as! NSManagedObject
+            managedContext.delete(objectToDelete)
+            
+            do{
+                try managedContext.save()
+                return true
+            }
+            catch
+            {
+                print(error)
+                return false
+            }
+        }
+    }
+    catch
+    {
+        print(error)
+    }
+    return false
+}

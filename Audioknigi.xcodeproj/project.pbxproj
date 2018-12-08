@@ -28,6 +28,7 @@
 		956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F521A9751C00F49C23 /* AudioBooks.swift */; };
 		95714BB721B2474F00A10A94 /* BookCharter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95714BB621B2474F00A10A94 /* BookCharter.swift */; };
 		957B754A21B6392C00F3B5DB /* EditAudioBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */; };
+		95B866ED21BBA65200807F7E /* EditCharterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B866EC21BBA65200807F7E /* EditCharterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		956219F521A9751C00F49C23 /* AudioBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooks.swift; sourceTree = "<group>"; };
 		95714BB621B2474F00A10A94 /* BookCharter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCharter.swift; sourceTree = "<group>"; };
 		957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAudioBookViewController.swift; sourceTree = "<group>"; };
+		95B866EC21BBA65200807F7E /* EditCharterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharterViewController.swift; sourceTree = "<group>"; };
 		BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 				95588FD321AAA235001925E9 /* MiniPlayerView.swift */,
 				95588FD721AABF2C001925E9 /* PlayerViewController.swift */,
 				957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */,
+				95B866EC21BBA65200807F7E /* EditCharterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				950641E621AC1CA200994EF5 /* AVPlayer.swift in Sources */,
 				9534979021AD3BFE004474AC /* MiniPlayer.swift in Sources */,
 				950641E421ABD55A00994EF5 /* PlayerURL.swift in Sources */,
+				95B866ED21BBA65200807F7E /* EditCharterViewController.swift in Sources */,
 				956219F421A974A100F49C23 /* AudioBooksCollectionViewController.swift in Sources */,
 				956219E921A9254A00F49C23 /* AudioBookCharter.swift in Sources */,
 				95588FD621AAAC78001925E9 /* Player.swift in Sources */,

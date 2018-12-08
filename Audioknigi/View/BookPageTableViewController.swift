@@ -63,18 +63,40 @@ class BookPageTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
 
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
-            print("favorite button tapped")
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let editCharterVC = storyboard.instantiateViewController(withIdentifier: "editCharter_VC_ID") as! EditCharterViewController
+            
+            editCharterVC.bookID = self.myBook[0].id
+            editCharterVC.charterInfo = [self.charters[index.row]]
+            
+            if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+                navigationController.pushViewController(editCharterVC, animated: true)
+                
+            }
+            
         }
         edit.backgroundColor = .blue
         
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
-            print("share button tapped")
+            let alert = UIAlertController(title: "Delete", message: "Delete this charter?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ (UIAlertAction)in
+                if deleteCharter(idBook: self.myBook[0].id, numCharter: self.charters[index.row].number) {
+                    print ("7888888")
+                    self.charters.remove(at: index.row)
+                    self.tableView.reloadData()
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+            self.present(alert, animated: true, completion: nil)
         }
         delete.backgroundColor = .red
         
         return [edit, delete]
     }
-   
+    
     @IBAction func deleteBookAction(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Delete", message: "Delete audio book?", preferredStyle: .alert)
         
@@ -90,8 +112,14 @@ class BookPageTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editBook" {
-            if let editVC = segue.destination as? EditAudioBookViewController {
-                editVC.bookInfo = self.myBook
+            if let editBookVC = segue.destination as? EditAudioBookViewController {
+                editBookVC.bookInfo = self.myBook
+            }
+        }
+        
+        if segue.identifier == "editCharter" {
+            if let editCharterVC = segue.destination as? EditCharterViewController {
+                editCharterVC.bookID = self.myBook[0].id
             }
         }
         
