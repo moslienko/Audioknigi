@@ -77,6 +77,9 @@ class EditAudioBookViewController: UIViewController, UIImagePickerControllerDele
             )) {
                 navigationController?.popViewController(animated: true)
             }
+            else {
+                showNote(vc: self.navigationController!, title: "Error", text: "Error update book", style: .error)
+            }
         }
         else {
             //Создать
@@ -89,6 +92,9 @@ class EditAudioBookViewController: UIViewController, UIImagePickerControllerDele
                 time: 0
             )) {
                 navigationController?.popViewController(animated: true)
+            }
+            else {
+                showNote(vc: self.navigationController!, title: "Error", text: "Error create book", style: .error)
             }
         }
     }

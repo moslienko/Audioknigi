@@ -79,8 +79,7 @@ class EditCharterViewController: UIViewController {
             
         }
         else {
-            //todo сообщение о неправильном url
-            print ("false url")
+            showNote(vc: self.navigationController!, title: "Error", text: "Not correct URL", style: .error)
         }
         
     }

@@ -72,7 +72,6 @@ class BookPageTableViewController: UITableViewController {
             
             if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
                 navigationController.pushViewController(editCharterVC, animated: true)
-                
             }
             
         }
@@ -83,9 +82,11 @@ class BookPageTableViewController: UITableViewController {
             
             alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ (UIAlertAction)in
                 if deleteCharter(idBook: self.myBook[0].id, numCharter: self.charters[index.row].number) {
-                    print ("7888888")
                     self.charters.remove(at: index.row)
                     self.tableView.reloadData()
+                }
+                else {
+                    showNote(vc: self.navigationController!, title: "Error", text: "Error delete charter", style: .error)
                 }
             }))
             
@@ -103,6 +104,9 @@ class BookPageTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ (UIAlertAction)in
             if deleteBook(id: self.myBook[0].id),deleteChartersForBookID(self.myBook[0].id) {
                 self.navigationController?.popViewController(animated: true)
+            }
+            else {
+                showNote(vc: self.navigationController!, title: "Error", text: "Error delete book", style: .error)
             }
         }))
         

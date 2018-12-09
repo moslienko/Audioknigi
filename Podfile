@@ -8,5 +8,6 @@ target 'Audioknigi' do
   # Pods for Audioknigi
   pod 'SwiftSoup'
   pod 'ShadowImageView'
+  pod 'Toast-Swift'
 
 end

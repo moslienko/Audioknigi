@@ -1,20 +1,24 @@
 PODS:
   - ShadowImageView (1.6.0)
   - SwiftSoup (1.7.4)
+  - Toast-Swift (4.0.0)
 
 DEPENDENCIES:
   - ShadowImageView
   - SwiftSoup
+  - Toast-Swift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ShadowImageView
     - SwiftSoup
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   ShadowImageView: c8cadd7e3e1e6a8e52a02e944a59bbbb048f2a5d
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
+  Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
 
-PODFILE CHECKSUM: a98c0b2b5b1bc018f3b5da568c738cb5933a25ea
+PODFILE CHECKSUM: 7a386a2cf1c7b0bbca7fc89cb2ab0e873c89e018
 
 COCOAPODS: 1.5.3

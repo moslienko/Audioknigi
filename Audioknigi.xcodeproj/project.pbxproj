@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071A727BC7074AE430B303FC /* Pods_Audioknigi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */; };
+		950251D621BCDE0D00F1865E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950251D521BCDE0D00F1865E /* Notification.swift */; };
 		950641E421ABD55A00994EF5 /* PlayerURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950641E321ABD55A00994EF5 /* PlayerURL.swift */; };
 		950641E621AC1CA200994EF5 /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950641E521AC1CA200994EF5 /* AVPlayer.swift */; };
 		9534979021AD3BFE004474AC /* MiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9534978F21AD3BFE004474AC /* MiniPlayer.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		12146830F1234AC7D79B3C0C /* Pods-Audioknigi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.release.xcconfig"; sourceTree = "<group>"; };
 		61FA63E54F86FC919D3EDC3F /* Pods_Audioknigi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audioknigi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		950251D521BCDE0D00F1865E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		950641E321ABD55A00994EF5 /* PlayerURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerURL.swift; sourceTree = "<group>"; };
 		950641E521AC1CA200994EF5 /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
 		9521ACAE21B5586300E14CC4 /* Audioknigi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audioknigi.entitlements; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				95714BB521B2410A00A10A94 /* CoreData */,
 				950641E521AC1CA200994EF5 /* AVPlayer.swift */,
 				9534978F21AD3BFE004474AC /* MiniPlayer.swift */,
+				950251D521BCDE0D00F1865E /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,11 +284,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ShadowImageView/ShadowImageView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ShadowImageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -315,6 +320,7 @@
 				957B754A21B6392C00F3B5DB /* EditAudioBookViewController.swift in Sources */,
 				95714BB721B2474F00A10A94 /* BookCharter.swift in Sources */,
 				95588FD821AABF2C001925E9 /* PlayerViewController.swift in Sources */,
+				950251D621BCDE0D00F1865E /* Notification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

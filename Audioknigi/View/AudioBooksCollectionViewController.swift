@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ShadowImageView
 
 class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRecognizerDelegate {
     private let reuseIdentifier = "cellAudioBook"
@@ -32,7 +31,6 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
             let miniPlayer = MiniPlayer.shared
             self.view.layer.addSublayer(miniPlayer.initMiniPlayer())
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +38,7 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         self.books = getMyAudioBooks()
         self.collectionView.reloadData()
     }
-
+    
     /**
      Получить элементы shortcuts для иконки приложения (3D Touch)
      */
@@ -121,7 +119,6 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
                     url = url?.replacingOccurrences(of: "knigav", with: "m.knigav")
                 }
                 //Получить информацию о книге и сохранить
-                //TODO проверка на ввод правильного url
                 let bookInfo = getBookInfoFromURL(NSURL(string: url!)! as URL)
                 print ("Book:", bookInfo)
                 if bookInfo != nil {
@@ -134,6 +131,12 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
                         self.books = getMyAudioBooks()
                         self.collectionView.reloadData()
                     }
+                    else {
+                        showNote(vc: self.navigationController!, title: "Error", text: "Error create book", style: .error)
+                    }
+                }
+                else {
+                    showNote(vc: self.navigationController!, title: "Error", text: "Not correct URL", style: .error)
                 }
                 
             }
