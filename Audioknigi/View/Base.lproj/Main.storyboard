@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hIG-N1-FCQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5jX-pS-TsT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -42,9 +42,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="nB9-Q5-BKE" kind="show" identifier="playBook" id="dWN-IP-H9Y"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -75,7 +72,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Py-bH-B9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1295" y="-67"/>
+            <point key="canvasLocation" x="2232.8000000000002" y="-67.016491754122939"/>
         </scene>
         <!--Edit audio book-->
         <scene sceneID="Zzv-gm-v5d">
@@ -86,7 +83,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtE-ae-SGh">
-                                <rect key="frame" x="16" y="132" width="343" height="174"/>
+                                <rect key="frame" x="16" y="132" width="343" height="125"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Rl2-0Y-cgT" customClass="ShadowImageView" customModule="ShadowImageView">
                                         <rect key="frame" x="8" y="23" width="91" height="113"/>
@@ -180,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JpB-qh-YgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="946" y="654"/>
+            <point key="canvasLocation" x="1855" y="681"/>
         </scene>
         <!--Edit charter book-->
         <scene sceneID="z9c-fs-sdC">
@@ -285,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RE9-Rj-ASd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1626" y="654"/>
+            <point key="canvasLocation" x="2601" y="681"/>
         </scene>
         <!--Play audio book-->
         <scene sceneID="cWP-Hb-g5n">
@@ -296,12 +293,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6nW-Py-UQh">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="323"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="274"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="274" id="p4N-8y-sxk"/>
+                                </constraints>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NR5-Bi-9kS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="323"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="G6O-XW-feK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="323"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="274"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="G6O-XW-feK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="274"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whh-Jp-vQQ">
@@ -322,30 +322,39 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJA-fg-New">
-                                <rect key="frame" x="49" y="361" width="45" height="45"/>
-                                <color key="tintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="play">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="playButtonClicked:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="0ko-6g-IwB"/>
-                                </connections>
-                            </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lxZ-co-jzf">
-                                <rect key="frame" x="47" y="331" width="282" height="31"/>
+                                <rect key="frame" x="47" y="282" width="282" height="31"/>
                                 <color key="minimumTrackTintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="playerSliderChange:" destination="nB9-Q5-BKE" eventType="valueChanged" id="nq0-0H-aXQ"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8m-dE-8f1">
-                                <rect key="frame" x="49" y="414" width="34" height="30"/>
-                                <state key="normal" title="Time">
-                                    <color key="titleColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qck-Jg-esh">
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="ogq-q5-5vB">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n8m-dE-8f1">
+                                            <rect key="frame" x="16" y="2" width="343" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Time" image="alarms"/>
+                                            <connections>
+                                                <action selector="openTimer:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="4PV-JU-tx7"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJA-fg-New">
+                                <rect key="frame" x="162" y="343" width="51" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="OuK-G3-Hd3"/>
+                                </constraints>
+                                <color key="tintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="play-button-3"/>
                                 <connections>
-                                    <action selector="openTimer:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="4PV-JU-tx7"/>
+                                    <action selector="playButtonClicked:" destination="nB9-Q5-BKE" eventType="touchUpInside" id="0ko-6g-IwB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -353,24 +362,27 @@
                         <constraints>
                             <constraint firstItem="lxZ-co-jzf" firstAttribute="top" secondItem="6nW-Py-UQh" secondAttribute="bottom" constant="8" id="3ry-16-RT9"/>
                             <constraint firstItem="6nW-Py-UQh" firstAttribute="trailing" secondItem="KQ2-mu-LKZ" secondAttribute="trailing" id="7JR-1k-RrJ"/>
-                            <constraint firstItem="KQ2-mu-LKZ" firstAttribute="bottom" secondItem="n8m-dE-8f1" secondAttribute="bottom" constant="223" id="ArL-wg-Jn7"/>
                             <constraint firstItem="NR5-Bi-9kS" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" id="Bnn-dV-XlV"/>
+                            <constraint firstItem="Qck-Jg-esh" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" id="BxJ-FE-cqn"/>
                             <constraint firstItem="6nW-Py-UQh" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" id="ChC-Pd-rzu"/>
-                            <constraint firstItem="n8m-dE-8f1" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" constant="49" id="D0t-MF-KaA"/>
                             <constraint firstItem="KQ2-mu-LKZ" firstAttribute="trailing" secondItem="lxZ-co-jzf" secondAttribute="trailing" constant="48" id="EvK-Oo-zau"/>
                             <constraint firstItem="KQ2-mu-LKZ" firstAttribute="bottom" secondItem="6nW-Py-UQh" secondAttribute="bottom" constant="344" id="M1w-XX-Ivj"/>
-                            <constraint firstItem="n8m-dE-8f1" firstAttribute="top" secondItem="cJA-fg-New" secondAttribute="bottom" constant="8" symbolic="YES" id="OaT-ZY-15t"/>
+                            <constraint firstItem="Qck-Jg-esh" firstAttribute="trailing" secondItem="KQ2-mu-LKZ" secondAttribute="trailing" id="Pg1-am-byy"/>
                             <constraint firstItem="lxZ-co-jzf" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" constant="49" id="Rob-Iw-iTO"/>
                             <constraint firstItem="NR5-Bi-9kS" firstAttribute="top" secondItem="gcT-ug-SDQ" secondAttribute="top" id="RtJ-yV-UFI"/>
                             <constraint firstItem="6nW-Py-UQh" firstAttribute="top" secondItem="gcT-ug-SDQ" secondAttribute="top" id="Z0m-VJ-IeW"/>
                             <constraint firstItem="KQ2-mu-LKZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cJA-fg-New" secondAttribute="trailing" symbolic="YES" id="aP6-rB-Nig"/>
+                            <constraint firstItem="cJA-fg-New" firstAttribute="centerX" secondItem="Qck-Jg-esh" secondAttribute="centerX" id="bi3-RF-dXd"/>
                             <constraint firstItem="cJA-fg-New" firstAttribute="leading" secondItem="KQ2-mu-LKZ" secondAttribute="leading" constant="49" id="c4X-kC-Vdw"/>
-                            <constraint firstItem="KQ2-mu-LKZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="n8m-dE-8f1" secondAttribute="trailing" symbolic="YES" id="cex-rV-iZH"/>
                             <constraint firstItem="NR5-Bi-9kS" firstAttribute="bottom" secondItem="6nW-Py-UQh" secondAttribute="bottom" id="gV3-HL-4F0"/>
+                            <constraint firstItem="Qck-Jg-esh" firstAttribute="bottom" secondItem="KQ2-mu-LKZ" secondAttribute="bottom" id="kQm-8t-nKc"/>
+                            <constraint firstItem="cJA-fg-New" firstAttribute="centerX" secondItem="NR5-Bi-9kS" secondAttribute="centerX" id="u2O-qD-giE"/>
+                            <constraint firstItem="cJA-fg-New" firstAttribute="top" secondItem="lxZ-co-jzf" secondAttribute="bottom" constant="23" id="vh9-oo-TUt"/>
                             <constraint firstAttribute="trailing" secondItem="NR5-Bi-9kS" secondAttribute="trailing" id="zH1-N2-PqJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KQ2-mu-LKZ"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Player" image="playlists" id="Ur8-HC-62i"/>
                     <navigationItem key="navigationItem" title="Play audio book" largeTitleDisplayMode="never" id="im5-V8-YyA">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="kLH-Tu-S1b"/>
                     </navigationItem>
@@ -384,7 +396,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fV-69-wxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2076" y="-67"/>
+            <point key="canvasLocation" x="716" y="662.51874062968523"/>
         </scene>
         <!--AudioBooks-->
         <scene sceneID="jyI-cX-NVY">
@@ -428,12 +440,13 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCx-N0-fMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="-67"/>
+            <point key="canvasLocation" x="1476" y="-67.016491754122939"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--My collection-->
         <scene sceneID="9uF-iG-DtA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hIG-N1-FCQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My collection" image="folder_music" id="G8p-0c-ykU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dFk-Ou-P08">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -447,10 +460,34 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1YF-8i-Mb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="716" y="-67.016491754122939"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="iAL-Ke-FkT">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="5jX-pS-TsT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oDj-p0-WL3">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="hIG-N1-FCQ" kind="relationship" relationship="viewControllers" id="2qL-1X-ruZ"/>
+                        <segue destination="nB9-Q5-BKE" kind="relationship" relationship="viewControllers" id="lCX-td-Tpm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Pk-ae-Twv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-223.19999999999999" y="-67.016491754122939"/>
         </scene>
     </scenes>
     <resources>
-        <image name="play" width="45" height="45"/>
+        <image name="alarms" width="32" height="32"/>
+        <image name="folder_music" width="32" height="32"/>
+        <image name="play-button-3" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="playlists" width="32" height="32"/>
     </resources>
 </document>

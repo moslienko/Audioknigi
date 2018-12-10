@@ -28,8 +28,11 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         let player = Player.shared
         //Найдена последняя открытая книга
         if  player.initPlayerWithLastBook() {
-            let miniPlayer = MiniPlayer.shared
-            self.view.layer.addSublayer(miniPlayer.initMiniPlayer())
+//            let miniPlayer = MiniPlayer.shared
+//            self.view.layer.addSublayer(miniPlayer.initMiniPlayer())
+        }
+        else {
+            self.tabBarController?.tabBar.isHidden = true
         }
     }
     
@@ -98,9 +101,7 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let playerVC = storyboard.instantiateViewController(withIdentifier: "editBook_VC_ID") as! EditAudioBookViewController
         
-        if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-            navigationController.pushViewController(playerVC, animated: true)
-        }
+        navigationController?.pushViewController(playerVC, animated: true)
     }
     
     /**

@@ -56,7 +56,23 @@ class BookPageTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.cellForRow(at: indexPath) != nil {
-            self.performSegue(withIdentifier: "playBook", sender: self)
+           //todo обновление плеера
+            
+            let bookData = self.myBook[0]
+            let player =  Player.shared
+                
+            player.url = charters[indexPath.row].url
+            player.charterID = indexPath.row //Порядковый номер главы
+            player.book = [bookData] //Данные о книги
+            player.playlist = charters //Главы
+                
+            //todo Обновить панель мини плеера
+            player.player?.pause()
+            
+            player.update = true
+            
+            self.tabBarController?.tabBar.isHidden = false
+            self.tabBarController?.selectedIndex = 1
         }
     }
     
@@ -70,10 +86,7 @@ class BookPageTableViewController: UITableViewController {
             editCharterVC.bookID = self.myBook[0].id
             editCharterVC.charterInfo = [self.charters[index.row]]
             
-            if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-                navigationController.pushViewController(editCharterVC, animated: true)
-            }
-            
+            self.navigationController?.pushViewController(editCharterVC, animated: true)
         }
         edit.backgroundColor = .blue
         
@@ -126,26 +139,7 @@ class BookPageTableViewController: UITableViewController {
                 editCharterVC.bookID = self.myBook[0].id
             }
         }
-        
-        if segue.identifier == "playBook" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                if indexPath.first != nil {
-                    let bookData = self.myBook[0]
 
-                    if segue.destination is PlayerViewController {
-                        let player =  Player.shared
-                        
-                        player.url = charters[indexPath.row].url
-                        player.charterID = indexPath.row //Порядковый номер главы
-                        player.book = [bookData] //Данные о книги
-                        player.playlist = charters //Главы
-                        
-                        //todo Обновить панель мини плеера
-                        player.player?.pause()
-                    }
-                }
-            }
-        }
      }
     
 }

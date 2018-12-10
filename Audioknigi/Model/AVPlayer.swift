@@ -21,6 +21,8 @@ class Player {
     var player:AVPlayer?
     var playerItem:AVPlayerItem?
     
+    var update = false
+    
     /**
      Инициализация плеера с последней воспроизведенной книгой
      */
@@ -39,6 +41,8 @@ class Player {
             player.url = playlist[player.charterID].url
             player.book = [currentBook[0]] //Данные о книги
             player.playlist = playlist //Главы
+            
+            player.update = true
             
             return true
         }

@@ -25,47 +25,56 @@ class PlayerViewController: UIViewController {
         
         playButton?.isHidden = true
         timerButton?.isHidden = true
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //todo при переходе будет флаг, если он  = 1, то обновить плеер
+        if player.update {
+            print ("test:",player)
+            if player.book.count > 0 {
+                let bookInfo = player.book[0]
                 
-        if player.book.count > 0 {
-            let bookInfo = player.book[0]
-            
-            saveAsLastBook(id: bookInfo.id)
-            self.navigationItem.title = bookInfo.name
-            backgroundImage?.image = UIImage(data: bookInfo.image)
-            coverImage?.image = UIImage(data: bookInfo.image)
-            
-            playButton?.isHidden = false
-            timerButton?.isHidden = false
-            
-            self.player.initPlayer()
-            self.view.layer.addSublayer(self.player.getPlayerLayer())
-            
-            let duration : CMTime = self.player.getDuration()
-            print ("duration:",duration)
-            let seconds : Float64 = CMTimeGetSeconds(duration)
-            print ("seconds:",seconds)
-            
-            print ("current:",CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime()))
-
-            if seconds > 0 {
+                saveAsLastBook(id: bookInfo.id)
+                self.navigationItem.title = bookInfo.name
+                backgroundImage?.image = UIImage(data: bookInfo.image)
+                coverImage?.image = UIImage(data: bookInfo.image)
                 
-                playerSlider?.maximumValue = Float(seconds)
-                playerSlider?.isContinuous = true
-                //Продолжить с места последней сохраненной остановки
-                if self.player.book[0].time != 0 {
-                    let audioTime = self.player.book[0].time
+                playButton?.isHidden = false
+                timerButton?.isHidden = false
+                
+                self.player.initPlayer()
+                self.view.layer.addSublayer(self.player.getPlayerLayer())
+                
+                let duration : CMTime = self.player.getDuration()
+                print ("duration:",duration)
+                let seconds : Float64 = CMTimeGetSeconds(duration)
+                print ("seconds:",seconds)
+                
+                print ("current:",CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime()))
+                
+                if seconds > 0 {
                     
-                    playerSlider?.value = audioTime
-                    Player.shared.startPlayInTime(audioTime)
+                    playerSlider?.maximumValue = Float(seconds)
+                    playerSlider?.isContinuous = true
+                    //Продолжить с места последней сохраненной остановки
+                    if self.player.book[0].time != 0 {
+                        let audioTime = self.player.book[0].time
+                        
+                        playerSlider?.value = audioTime
+                        Player.shared.startPlayInTime(audioTime)
+                    }
+                    else {
+                        playerSlider?.value = 0
+                        Player.shared.startPlayInTime(0)
+                    }
+                    playStop()
+                    
                 }
-                else {
-                    playerSlider?.value = 0
-                    Player.shared.startPlayInTime(0)
-                }
-                playStop()
                 
             }
-
+            player.update = false
         }
     }
     
