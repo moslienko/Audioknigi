@@ -10,6 +10,38 @@ import Foundation
 import UIKit
 import AVFoundation
 
+extension Double {
+    /**
+     Перевод секунд в время (для отображения) в VC
+     - Parameter style: Формат
+     - Returns: Время
+     */
+    func asString(style: DateComponentsFormatter.UnitsStyle) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second, .nanosecond]
+        formatter.unitsStyle = style
+        guard let formattedString = formatter.string(from: self) else { return "" }
+        return formattedString
+    }
+}
+
+extension AVPlayer {
+    /**
+     Наблюдатель за плеером, при проигрывании отслеживать изменение времени
+     - Returns: пройденное время, сколько осталось
+     */
+    func addProgressObserver(action:@escaping ((Float64,Float64) -> Void)) -> Any {
+        return self.addPeriodicTimeObserver(forInterval: CMTime.init(value: 1, timescale: 1), queue: .main, using: { time in
+            if let duration = self.currentItem?.duration {
+                let duration = CMTimeGetSeconds(duration), time = CMTimeGetSeconds(time)
+                //let progress = (time/duration)
+                //let progress = (test:duration,te:time)
+                action(time, duration-time)
+            }
+        })
+    }
+}
+
 class Player {
     static let shared = Player()
     
@@ -21,7 +53,8 @@ class Player {
     var player:AVPlayer?
     var playerItem:AVPlayerItem?
     
-    var update = false
+    var update = false //Обновить плеер
+    var timer = 0.0   //Таймер
     
     /**
      Инициализация плеера с последней воспроизведенной книгой
@@ -90,13 +123,16 @@ class Player {
      */
     @objc func finishedPlaying( _ myNotification:NSNotification) {
         print ("END")
-        if self.playlist.indices.contains(self.charterID+1) {
+        //Если есть след. глава и не установлен таймер на остановки после окончания главы
+        if self.playlist.indices.contains(self.charterID+1), self.timer != -1 {
             let nextAudio = self.playlist[self.charterID+1]
             print ("Play next:",nextAudio)
             self.url = nextAudio.url
             initPlayer()
             startPlayInTime(0)
         }
+        
+        self.timer = 0 //Отключить таймер
     }
     
     /**
