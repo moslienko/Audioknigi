@@ -11,42 +11,34 @@ import AVFoundation
 
 class PlayerViewController: UIViewController {
     
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var coverImage: UIImageView!
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var coverView: PlayerCover!
+    @IBOutlet weak var controlView: PlayerControl!
     @IBOutlet weak var timerButton: UIBarButtonItem!
     @IBOutlet weak var timerLabel: UIButton!
-    @IBOutlet weak var playerSlider: UISlider!
-    
-    @IBOutlet weak var hasLeftTimeLabel: UILabel!
-    @IBOutlet weak var leftTimeLabel: UILabel!
-    
-    @IBOutlet weak var nameBook: UILabel!
-    @IBOutlet weak var nameCharter: UILabel!
-    
     
     let player = Player.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MiniPlayer.shared.hideMiniPlayer()
+        controlView.playButton.addTarget(self, action:  #selector(self.playButtonClicked(_:)), for: .touchUpInside)
+        controlView.playerSlider.addTarget(self, action:  #selector(self.playerSliderChange(_:)), for: .valueChanged)
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         if player.update {
             print ("test:",player)
             if player.book.count > 0 {
                 let bookInfo = player.book[0]
-                
+                print ("backgroundCover 2:",coverView.backgroundCover)
+
                 saveAsLastBook(id: bookInfo.id)
                 self.navigationItem.title = bookInfo.name
-                backgroundImage?.image = UIImage(data: bookInfo.image)
-                coverImage?.image = UIImage(data: bookInfo.image)
-                nameBook?.text = bookInfo.name
-                nameCharter?.text = player.playlist[bookInfo.charter].name
+                coverView.backgroundCover?.image = UIImage(data: bookInfo.image)
+                coverView.coverImage?.image = UIImage(data: bookInfo.image)
+                controlView.nameBook?.text = bookInfo.name
+                controlView.nameCharter?.text = player.playlist[bookInfo.charter].name
                 
                 self.player.initPlayer()
                 self.view.layer.addSublayer(self.player.getPlayerLayer())
@@ -57,38 +49,38 @@ class PlayerViewController: UIViewController {
                 print ("seconds:",seconds)
                 print ("current:",CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime()))
                 if seconds > 0 {
-                    playerSlider?.maximumValue = Float(seconds)
-                    playerSlider?.isContinuous = true
+                    controlView.playerSlider?.maximumValue = Float(seconds)
+                    controlView.playerSlider?.isContinuous = true
                     //Продолжить с места последней сохраненной остановки
                     if self.player.book[0].time != 0 {
                         let audioTime = self.player.book[0].time
                         
-                        playerSlider?.value = audioTime
-                        leftTimeLabel?.text = (seconds - Float64(audioTime)).asString(style: .positional) //Сколько осталось
+                        controlView.playerSlider?.value = audioTime
+                        controlView.leftTimeLabel?.text = (seconds - Float64(audioTime)).asString(style: .positional) //Сколько осталось
     
                         Player.shared.startPlayInTime(audioTime)
                     }
                     else {
-                        leftTimeLabel?.text = seconds.asString(style: .positional) //Конец главы
-                        playerSlider?.value = 0
+                        controlView.leftTimeLabel?.text = seconds.asString(style: .positional) //Конец главы
+                        controlView.playerSlider?.value = 0
                         Player.shared.startPlayInTime(0)
                     }
                     
-                    hasLeftTimeLabel?.text = CMTimeGetSeconds(player.player?.currentTime() ?? CMTime()).asString(style: .positional)
+                    self.controlView.hasLeftTimeLabel?.text = CMTimeGetSeconds(player.player?.currentTime() ?? CMTime()).asString(style: .positional)
                     
                     player.player?.addProgressObserver { hasLeft, left in
                         if !hasLeft.isNaN {
-                            self.hasLeftTimeLabel?.text = hasLeft.asString(style: .positional)
-                            self.playerSlider.value = self.playerSlider.value + 1
+                            self.controlView.hasLeftTimeLabel?.text = hasLeft.asString(style: .positional)
+                            self.controlView.playerSlider.value = self.controlView.playerSlider.value + 1
                         }
                         if !left.isNaN {
-                            self.leftTimeLabel?.text = left.asString(style: .positional)
+                            self.controlView.leftTimeLabel?.text = left.asString(style: .positional)
                         }
                         
                         //Таймер
                         if self.player.timer < 0 {
                             //Отключить по завершению главы
-                            self.timerLabel?.setTitle(self.leftTimeLabel?.text, for:.normal)
+                            self.timerLabel?.setTitle(self.controlView.leftTimeLabel?.text, for:.normal)
                         }
                         if self.player.timer > 0 {
                             let newTime = self.player.timer - 1
@@ -113,7 +105,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func playerSliderChange(_ sender: UISlider) {
-        Player.shared.startPlayInTime(playerSlider.value)
+        Player.shared.startPlayInTime(controlView.playerSlider?.value ?? 0)
     }
     
     @IBAction func playButtonClicked(_ sender: UIButton) {
@@ -162,7 +154,7 @@ class PlayerViewController: UIViewController {
         }
         if seconds < 0 {
             //Отключить по окончанию главы
-             self.timerLabel?.setTitle(self.leftTimeLabel?.text, for:.normal)
+             self.timerLabel?.setTitle(controlView.leftTimeLabel?.text, for:.normal)
         }
         if seconds > 0 {
             //Таймер
@@ -181,6 +173,6 @@ class PlayerViewController: UIViewController {
 
         savePlayer(id: player.book[0].id, charter: player.charterID, time: Float(CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime())))
         
-        self.playButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
+        controlView.playButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
     }
 }

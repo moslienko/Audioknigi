@@ -29,6 +29,10 @@
 		956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F521A9751C00F49C23 /* AudioBooks.swift */; };
 		95714BB721B2474F00A10A94 /* BookCharter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95714BB621B2474F00A10A94 /* BookCharter.swift */; };
 		957B754A21B6392C00F3B5DB /* EditAudioBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */; };
+		9593D49A21C50AD500A840DC /* PlayerCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9593D49921C50AD500A840DC /* PlayerCover.xib */; };
+		9593D49E21C50BDC00A840DC /* PlayerCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593D49D21C50BDC00A840DC /* PlayerCover.swift */; };
+		9593D4A021C51CC600A840DC /* PlayerControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9593D49F21C51CC600A840DC /* PlayerControl.xib */; };
+		9593D4A221C51DDF00A840DC /* PlayerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593D4A121C51DDF00A840DC /* PlayerControl.swift */; };
 		95B866ED21BBA65200807F7E /* EditCharterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B866EC21BBA65200807F7E /* EditCharterViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +63,10 @@
 		956219F521A9751C00F49C23 /* AudioBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooks.swift; sourceTree = "<group>"; };
 		95714BB621B2474F00A10A94 /* BookCharter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCharter.swift; sourceTree = "<group>"; };
 		957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAudioBookViewController.swift; sourceTree = "<group>"; };
+		9593D49921C50AD500A840DC /* PlayerCover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerCover.xib; sourceTree = "<group>"; };
+		9593D49D21C50BDC00A840DC /* PlayerCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCover.swift; sourceTree = "<group>"; };
+		9593D49F21C51CC600A840DC /* PlayerControl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControl.xib; sourceTree = "<group>"; };
+		9593D4A121C51DDF00A840DC /* PlayerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControl.swift; sourceTree = "<group>"; };
 		95B866EC21BBA65200807F7E /* EditCharterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharterViewController.swift; sourceTree = "<group>"; };
 		BE06174EFA68229DCBE38F4B /* Pods-Audioknigi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audioknigi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Audioknigi/Pods-Audioknigi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +139,10 @@
 				95588FD721AABF2C001925E9 /* PlayerViewController.swift */,
 				957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */,
 				95B866EC21BBA65200807F7E /* EditCharterViewController.swift */,
+				9593D49921C50AD500A840DC /* PlayerCover.xib */,
+				9593D49D21C50BDC00A840DC /* PlayerCover.swift */,
+				9593D49F21C51CC600A840DC /* PlayerControl.xib */,
+				9593D4A121C51DDF00A840DC /* PlayerControl.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +262,8 @@
 				956219E121A9216900F49C23 /* LaunchScreen.storyboard in Resources */,
 				956219DE21A9216900F49C23 /* Assets.xcassets in Resources */,
 				956219F021A9742A00F49C23 /* AudioBookViewCell.xib in Resources */,
+				9593D4A021C51CC600A840DC /* PlayerControl.xib in Resources */,
+				9593D49A21C50AD500A840DC /* PlayerCover.xib in Resources */,
 				956219D921A9216700F49C23 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +324,7 @@
 				956219D421A9216700F49C23 /* AppDelegate.swift in Sources */,
 				95588FD421AAA235001925E9 /* MiniPlayerView.swift in Sources */,
 				950641E621AC1CA200994EF5 /* AVPlayer.swift in Sources */,
+				9593D49E21C50BDC00A840DC /* PlayerCover.swift in Sources */,
 				9534979021AD3BFE004474AC /* MiniPlayer.swift in Sources */,
 				950641E421ABD55A00994EF5 /* PlayerURL.swift in Sources */,
 				95B866ED21BBA65200807F7E /* EditCharterViewController.swift in Sources */,
@@ -321,6 +336,7 @@
 				95714BB721B2474F00A10A94 /* BookCharter.swift in Sources */,
 				95588FD821AABF2C001925E9 /* PlayerViewController.swift in Sources */,
 				950251D621BCDE0D00F1865E /* Notification.swift in Sources */,
+				9593D4A221C51DDF00A840DC /* PlayerControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
