@@ -75,6 +75,13 @@ class playerURL {
         return (native:generateCyrillicURL(), latin:generateLatinURL())
     }
     
+    struct checkURLElement {
+        var storagePath:Int
+        var extraStoragePath:Int
+        var native: URL
+        var latin: URL
+    }
+    
     /**
      Получение доступа к файлу книги
      
@@ -85,15 +92,20 @@ class playerURL {
      - Returns: Статус выполнения операции
      */
     func checkAudioURL() -> Bool {
-        //https://s6.knigavuhe.ru/1/audio/18529/01-strana-radosti.mp3?f=1
-        //https://s6.knigavuhe.ru/6/audio/18529/01-strana-radosti.mp3
-        var urls = [(native: URL, latin: URL)]()
+        var urls = [checkURLElement]()
         
         for i in 1...6 {
             self.storagePath = i
             for j in 1...3 {
                 self.extraStoragePath = j
-                urls.append(encodeAudioURL())
+                let encodeURL = encodeAudioURL()
+                
+                urls.append(checkURLElement.init(
+                    storagePath: i,
+                    extraStoragePath: j,
+                    native: encodeURL.native,
+                    latin: encodeURL.latin
+                ))
             }
         }
             print ("urls:",urls)
@@ -104,11 +116,18 @@ class playerURL {
                         if isValidSoundURL(url.latin) {
                             self.urlAlgorithm = .latin
                             self.currentUrlStr = url.latin
+                            self.storagePath = url.storagePath
+                            self.extraStoragePath = url.extraStoragePath
+                          
                             return true
                         }
                         if isValidSoundURL(url.native) {
                             self.urlAlgorithm = .native
                             self.currentUrlStr = url.native
+                            
+                            self.storagePath = url.storagePath
+                            self.extraStoragePath = url.extraStoragePath
+                  
                             return true
                         }
             }
