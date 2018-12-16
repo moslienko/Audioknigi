@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 extension Double {
     /**
@@ -90,9 +91,7 @@ class Player {
             print ("init with:",url)
             self.playerItem = AVPlayerItem(url: url!)
             self.player = AVPlayer(playerItem: playerItem)
-            
             NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
-            
         }
     }
     
@@ -124,7 +123,7 @@ class Player {
     @objc func finishedPlaying( _ myNotification:NSNotification) {
         print ("END")
         //Если есть след. глава и не установлен таймер на остановки после окончания главы
-        if self.playlist.indices.contains(self.charterID+1), self.timer != -1 {
+        if self.playlist.indices.contains(self.charterID+1), self.timer != 0 {
             let nextAudio = self.playlist[self.charterID+1]
             print ("Play next:",nextAudio)
             self.url = nextAudio.url
@@ -157,8 +156,10 @@ class Player {
         if player?.rate == 0
         {
             player?.play()
+            MPNowPlayingInfoCenter.default().playbackState = .playing
         } else {
             player?.pause()
+            MPNowPlayingInfoCenter.default().playbackState = .paused
             //Сохранить время остановки
             if !savePlayer(id: book[0].id, charter: charterID, time: Float(CMTimeGetSeconds(player?.currentTime() ?? CMTime()))) {
                 print ("Error save stop")
@@ -177,6 +178,49 @@ class Player {
         }
         
         return UIImage(named: playImg)!
+    }
+    
+    /**
+     Проигрывание аудио в фоновом режиме
+     */
+     func setupAVAudioSession() {
+        do {
+            
+            if #available(iOS 10.0, *) {
+                try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
+            }
+            else {
+                AVAudioSession.sharedInstance().perform(NSSelectorFromString("setCategory:error:"), with: AVAudioSession.Category.playback)
+            }
+            
+            try AVAudioSession.sharedInstance().setActive(true)
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            setupNowPlaying()
+        } catch {
+            print("Error with setur AV session: \(error)")
+        }
+    }
+    
+    /**
+     Установить данные аудиокниги (название, обложка, длительность) в MPNowPlayingInfoCenter
+     */
+    func setupNowPlaying() {
+        var nowPlayingInfo = [String : Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = self.book[0].name
+        
+        let coverImg = UIImage(data: self.book[0].image)
+        let standartImg = UIImage(named: "AppIcon")
+        
+        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork.init(boundsSize: coverImg?.size ?? standartImg!.size, requestHandler: { (size) -> UIImage in
+            return coverImg ?? standartImg!
+        })
+        
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.playerItem?.currentTime().seconds
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.playerItem?.asset.duration.seconds
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player?.rate
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        //MPNowPlayingInfoCenter.default().playbackState = .playing
     }
     
 }

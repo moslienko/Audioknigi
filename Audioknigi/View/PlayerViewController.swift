@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 class PlayerViewController: UIViewController {
     
@@ -22,6 +23,26 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         controlView.playButton.addTarget(self, action:  #selector(self.playButtonClicked(_:)), for: .touchUpInside)
         controlView.playerSlider.addTarget(self, action:  #selector(self.playerSliderChange(_:)), for: .valueChanged)
+        
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
+        
+        commandCenter.playCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            print ("Click play")
+            self?.playStop()
+            MPNowPlayingInfoCenter.default().playbackState = .playing
+            return .success
+        }
+        commandCenter.pauseCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            print ("Click pause")
+            self?.playStop()
+            MPNowPlayingInfoCenter.default().playbackState = .paused
+            return .success
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,12 +117,13 @@ class PlayerViewController: UIViewController {
                     }
                     
                     playStop()
-                    
                 }
                 
             }
             player.update = false
+            self.player.setupAVAudioSession()
         }
+        
     }
     
     @IBAction func playerSliderChange(_ sender: UISlider) {
@@ -165,6 +187,7 @@ class PlayerViewController: UIViewController {
     
     func playStop() {
         self.player.playPauseAction() //Работа с файлом
+
         //Интерфейс
         var playImg = "pause"
         if self.player.player?.rate == 0 {
