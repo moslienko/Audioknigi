@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRecognizerDelegate {
+class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRecognizerDelegate,UIViewControllerPreviewingDelegate {
     private let reuseIdentifier = "cellAudioBook"
     
     var books = [AudioBooks]() // Список сохраненых книг
@@ -33,6 +33,10 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         }
         else {
             self.tabBarController?.tabBar.isHidden = true
+        }
+        
+        if (traitCollection.forceTouchCapability == .available){
+            registerForPreviewing(with: self, sourceView: view)
         }
     }
     
@@ -178,4 +182,18 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         }
     }
     
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let indexPath = collectionView?.indexPathForItem(at: location) else { return nil }
+        guard (collectionView?.cellForItem(at: indexPath)) != nil else { return nil }
+        
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "BookPage_VC") as? BookPageTableViewController else { return nil }
+        detailVC.myBook = [self.books[indexPath.row]]
+        
+        return detailVC
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
 }

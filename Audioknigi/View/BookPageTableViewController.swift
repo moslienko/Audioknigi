@@ -77,9 +77,7 @@ class BookPageTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
-
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let editCharterVC = storyboard.instantiateViewController(withIdentifier: "editCharter_VC_ID") as! EditCharterViewController
             
