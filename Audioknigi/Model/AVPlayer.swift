@@ -41,6 +41,7 @@ extension AVPlayer {
             }
         })
     }
+    
 }
 
 class Player {
@@ -91,7 +92,6 @@ class Player {
             print ("init with:",url)
             self.playerItem = AVPlayerItem(url: url!)
             self.player = AVPlayer(playerItem: playerItem)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
         }
     }
     
@@ -115,23 +115,6 @@ class Player {
             return self.playerItem?.asset.duration ?? CMTime()
         }
         return CMTime()
-    }
-    
-    /**
-     Если конец воспроизведения главы - открыть следующую
-     */
-    @objc func finishedPlaying( _ myNotification:NSNotification) {
-        print ("END")
-        //Если есть след. глава и не установлен таймер на остановки после окончания главы
-        if self.playlist.indices.contains(self.charterID+1), self.timer != 0 {
-            let nextAudio = self.playlist[self.charterID+1]
-            print ("Play next:",nextAudio)
-            self.url = nextAudio.url
-            initPlayer()
-            startPlayInTime(0)
-        }
-        
-        self.timer = 0 //Отключить таймер
     }
     
     /**

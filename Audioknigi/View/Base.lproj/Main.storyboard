@@ -13,7 +13,7 @@
         <!--AudioBook-->
         <scene sceneID="Z7r-7X-niT">
             <objects>
-                <tableViewController id="tSj-xm-di0" customClass="BookPageTableViewController" customModule="Audioknigi" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="BookPage_VC" id="tSj-xm-di0" customClass="BookPageTableViewController" customModule="Audioknigi" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LHo-wo-MJ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,7 +310,7 @@
                                 <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" id="ogq-q5-5vB">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n8m-dE-8f1">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n8m-dE-8f1">
                                             <rect key="frame" x="16" y="6" width="343" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="tintColor" red="0.91372549020000005" green="0.25098039220000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

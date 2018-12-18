@@ -51,73 +51,11 @@ class PlayerViewController: UIViewController {
         if player.update {
             print ("test:",player)
             if player.book.count > 0 {
-                let bookInfo = player.book[0]
-                print ("backgroundCover 2:",coverView.backgroundCover)
-
-                saveAsLastBook(id: bookInfo.id)
-                self.navigationItem.title = bookInfo.name
-                coverView.backgroundCover?.image = UIImage(data: bookInfo.image)
-                coverView.coverImage?.image = UIImage(data: bookInfo.image)
-                controlView.nameBook?.text = bookInfo.name
-                controlView.nameCharter?.text = player.playlist[bookInfo.charter].name
-                
                 self.player.initPlayer()
+                //NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.playerItem)
+
                 self.view.layer.addSublayer(self.player.getPlayerLayer())
-                
-                let duration : CMTime = self.player.getDuration()
-                print ("duration:",duration)
-                let seconds : Float64 = CMTimeGetSeconds(duration)
-                print ("seconds:",seconds)
-                print ("current:",CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime()))
-                if seconds > 0 {
-                    controlView.playerSlider?.maximumValue = Float(seconds)
-                    controlView.playerSlider?.isContinuous = true
-                    //Продолжить с места последней сохраненной остановки
-                    if self.player.book[0].time != 0 {
-                        let audioTime = self.player.book[0].time
-                        
-                        controlView.playerSlider?.value = audioTime
-                        controlView.leftTimeLabel?.text = (seconds - Float64(audioTime)).asString(style: .positional) //Сколько осталось
-    
-                        Player.shared.startPlayInTime(audioTime)
-                    }
-                    else {
-                        controlView.leftTimeLabel?.text = seconds.asString(style: .positional) //Конец главы
-                        controlView.playerSlider?.value = 0
-                        Player.shared.startPlayInTime(0)
-                    }
-                    
-                    self.controlView.hasLeftTimeLabel?.text = CMTimeGetSeconds(player.player?.currentTime() ?? CMTime()).asString(style: .positional)
-                    
-                    player.player?.addProgressObserver { hasLeft, left in
-                        if !hasLeft.isNaN {
-                            self.controlView.hasLeftTimeLabel?.text = hasLeft.asString(style: .positional)
-                            self.controlView.playerSlider.value = self.controlView.playerSlider.value + 1
-                        }
-                        if !left.isNaN {
-                            self.controlView.leftTimeLabel?.text = left.asString(style: .positional)
-                        }
-                        
-                        //Таймер
-                        if self.player.timer < 0 {
-                            //Отключить по завершению главы
-                            self.timerLabel?.setTitle(self.controlView.leftTimeLabel?.text, for:.normal)
-                        }
-                        if self.player.timer > 0 {
-                            let newTime = self.player.timer - 1
-                            self.timerLabel?.setTitle(newTime.asString(style: .positional), for:.normal)
-                            self.player.timer = newTime
-                        }
-                        //Отключение
-                        if self.player.timer == 1 {
-                           self.player.player?.pause()
-                        }
-                        
-                        
-                    }
-                    
-                    playStop()
-                }
+                updatePlayerUI()
                 
             }
             player.update = false
@@ -125,6 +63,84 @@ class PlayerViewController: UIViewController {
         }
         
     }
+    
+    func updatePlayerUI() {
+        if player.book.count > 0 {
+            let bookInfo = player.book[0]
+            print ("UI:",bookInfo)
+            saveAsLastBook(id: bookInfo.id)
+            self.navigationItem.title = bookInfo.name
+            coverView.backgroundCover?.image = UIImage(data: bookInfo.image)
+            coverView.coverImage?.image = UIImage(data: bookInfo.image)
+            controlView.nameBook?.text = bookInfo.name
+            controlView.nameCharter?.text = player.playlist[self.player.charterID].name
+            
+            print ("charter id is:",player.playlist[self.player.charterID])
+            //todo изменять интерфейс при переключении на след. главу
+            //self.player.startPlayInTime(0)
+            
+             let duration : CMTime = self.player.getDuration()
+             print ("duration:",duration)
+             let seconds : Float64 = CMTimeGetSeconds(duration)
+             print ("seconds:",seconds)
+             print ("current:",CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime()))
+             if seconds > 0 {
+                 controlView.playerSlider?.maximumValue = Float(seconds)
+                 controlView.playerSlider?.isContinuous = true
+                 //Продолжить с места последней сохраненной остановки
+                 if bookInfo.time != 0 {
+                 let audioTime = bookInfo.time
+                 
+                 controlView.playerSlider?.value = audioTime
+                 controlView.leftTimeLabel?.text = (seconds - Float64(audioTime)).asString(style: .positional) //Сколько осталось
+                 
+                 Player.shared.startPlayInTime(audioTime)
+             }
+             else {
+                 controlView.leftTimeLabel?.text = seconds.asString(style: .positional) //Конец главы
+                 controlView.playerSlider?.value = 0
+                 Player.shared.startPlayInTime(0)
+             }
+             
+             self.controlView.hasLeftTimeLabel?.text = CMTimeGetSeconds(player.player?.currentTime() ?? CMTime()).asString(style: .positional)
+             
+             player.player?.addProgressObserver { hasLeft, left in
+             if !hasLeft.isNaN {
+             self.controlView.hasLeftTimeLabel?.text = hasLeft.asString(style: .positional)
+             self.controlView.playerSlider.value = self.controlView.playerSlider.value + 1
+             }
+             if !left.isNaN {
+             self.controlView.leftTimeLabel?.text = left.asString(style: .positional)
+             }
+             
+             if left.asString(style: .positional) == "0" {
+                self.endCharter()
+             }
+             
+             //Таймер
+             if self.player.timer < 0 {
+                 //Отключить по завершению главы
+                 self.timerLabel?.setTitle(self.controlView.leftTimeLabel?.text, for:.normal)
+             }
+             if self.player.timer > 0 {
+                 let newTime = self.player.timer - 1
+                 self.timerLabel?.setTitle(newTime.asString(style: .positional), for:.normal)
+                 self.player.timer = newTime
+             }
+             //Отключение
+             if self.player.timer == 1 {
+                self.player.player?.pause()
+             }
+             
+             
+             }
+                self.player.startPlayInTime(0)
+
+             //playStop()
+             }
+        }
+    }
+    
     
     @IBAction func playerSliderChange(_ sender: UISlider) {
         Player.shared.startPlayInTime(controlView.playerSlider?.value ?? 0)
@@ -197,5 +213,33 @@ class PlayerViewController: UIViewController {
         savePlayer(id: player.book[0].id, charter: player.charterID, time: Float(CMTimeGetSeconds(self.player.player?.currentTime() ?? CMTime())))
         
         controlView.playButton?.setImage(UIImage(named: playImg), for: UIControl.State.normal)
+    }
+    
+    /**
+     Если конец воспроизведения главы - открыть следующую
+     */
+    @objc func finishedPlaying( _ myNotification:NSNotification) {
+        endCharter()
+    }
+    
+    func endCharter() {
+        print ("END")
+        print ("timer:",self.player.timer)
+        print ("timer:",self.player.playlist.indices.contains(self.player.charterID+1))
+        
+        //Если есть след. глава и не установлен таймер на остановки после окончания главы
+        if self.player.playlist.indices.contains(self.player.charterID+1), self.player.timer != -1 {
+            let nextAudio = self.player.playlist[self.player.charterID+1]
+            print ("Play next:",nextAudio)
+            self.player.url = nextAudio.url
+            self.player.charterID += 1
+            self.player.book[0].time = 0
+            self.player.initPlayer()
+            self.player.startPlayInTime(0)
+            
+            self.updatePlayerUI()
+        }
+        
+        self.player.timer = 0 //Отключить таймер
     }
 }
