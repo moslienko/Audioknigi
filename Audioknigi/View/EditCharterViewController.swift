@@ -30,7 +30,7 @@ class EditCharterViewController: UIViewController {
             numberCharter.text = String(describing:data.number + 1) //Отсчет в базе идет с нуля
         }
         else {
-            self.navigationItem.title = "Add new charter"
+            self.navigationItem.title = "Add new charter".localized
             numberCharter.text = String(describing: getChartersForBookID(self.bookID).count+1)
         }
         /* Главу редактировать нельзя что бы не создавать конфликтов в core data.
@@ -51,7 +51,7 @@ class EditCharterViewController: UIViewController {
                 //Обновить
                 var data = charterInfo[0]
                 
-                data.name = name ?? "Charter name"
+                data.name = name ?? "Charter name".localized
                 data.number = number
                 data.url = url! as URL
                 
@@ -66,7 +66,7 @@ class EditCharterViewController: UIViewController {
                 let data = Charter.init(
                     number: number,
                     bookID: self.bookID,
-                    name: name ?? "Charter name",
+                    name: name ?? "Charter name".localized,
                     duration: duration,
                     url: url! as URL)
                 
@@ -79,7 +79,7 @@ class EditCharterViewController: UIViewController {
             
         }
         else {
-            showNote(vc: self.navigationController!, title: "Error", text: "Not correct URL", style: .error)
+            showNote(vc: self.navigationController!, title: "Error".localized, text: "Not correct URL".localized, style: .error)
         }
         
     }

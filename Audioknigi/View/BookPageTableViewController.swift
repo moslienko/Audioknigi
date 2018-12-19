@@ -77,7 +77,7 @@ class BookPageTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+        let edit = UITableViewRowAction(style: .normal, title: "Edit".localized) { action, index in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let editCharterVC = storyboard.instantiateViewController(withIdentifier: "editCharter_VC_ID") as! EditCharterViewController
             
@@ -88,20 +88,20 @@ class BookPageTableViewController: UITableViewController {
         }
         edit.backgroundColor = .blue
         
-        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
-            let alert = UIAlertController(title: "Delete", message: "Delete this charter?", preferredStyle: .alert)
+        let delete = UITableViewRowAction(style: .normal, title: "Delete".localized) { action, index in
+            let alert = UIAlertController(title: "Delete".localized, message: "Delete this charter?".localized, preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ (UIAlertAction)in
+            alert.addAction(UIAlertAction(title: "Yes".localized, style: .default , handler:{ (UIAlertAction)in
                 if deleteCharter(idBook: self.myBook[0].id, numCharter: self.charters[index.row].number) {
                     self.charters.remove(at: index.row)
                     self.tableView.reloadData()
                 }
                 else {
-                    showNote(vc: self.navigationController!, title: "Error", text: "Error delete charter", style: .error)
+                    showNote(vc: self.navigationController!, title: "Error".localized, text: "Error delete charter".localized, style: .error)
                 }
             }))
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler:{ (UIAlertAction)in }))
             self.present(alert, animated: true, completion: nil)
         }
         delete.backgroundColor = .red
@@ -110,18 +110,18 @@ class BookPageTableViewController: UITableViewController {
     }
     
     @IBAction func deleteBookAction(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Delete", message: "Delete audio book?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Delete".localized, message: "Delete audio book?".localized, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Yes".localized, style: .default , handler:{ (UIAlertAction)in
             if deleteBook(id: self.myBook[0].id),deleteChartersForBookID(self.myBook[0].id) {
                 self.navigationController?.popViewController(animated: true)
             }
             else {
-                showNote(vc: self.navigationController!, title: "Error", text: "Error delete book", style: .error)
+                showNote(vc: self.navigationController!, title: "Error".localized, text: "Error delete book".localized, style: .error)
             }
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler:{ (UIAlertAction)in }))
         self.present(alert, animated: true, completion: nil)
     }
     

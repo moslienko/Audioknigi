@@ -1,0 +1,63 @@
+
+/* Class = "UINavigationItem"; title = "AudioBooks"; ObjectID = "9mt-tn-QoP"; */
+"9mt-tn-QoP.title" = "Аудиокниги";
+
+/* Class = "UINavigationItem"; title = "Edit charter book"; ObjectID = "EyN-gA-vlK"; */
+"EyN-gA-vlK.title" = "Редактирование главы";
+
+/* Class = "UITabBarItem"; title = "My collection"; ObjectID = "G8p-0c-ykU"; */
+"G8p-0c-ykU.title" = "Моя коллекция";
+
+/* Class = "UIButton"; normalTitle = "Standart"; ObjectID = "J5e-9e-ld7"; */
+"J5e-9e-ld7.normalTitle" = "Стандартное";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Jgz-h3-yhL"; */
+"Jgz-h3-yhL.text" = "Название";
+
+/* Class = "UILabel"; text = "Number"; ObjectID = "L4k-y5-yXU"; */
+"L4k-y5-yXU.text" = "Номер";
+
+/* Class = "UITextField"; placeholder = "URL address (.mp3 file)"; ObjectID = "MyN-G7-990"; */
+"MyN-G7-990.placeholder" = "URL адрес (.mp3 файл)";
+
+/* Class = "UITextField"; placeholder = "Number charter"; ObjectID = "O6T-JS-5A4"; */
+"O6T-JS-5A4.placeholder" = "Номер главы";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "S8u-5I-cku"; */
+"S8u-5I-cku.text" = "Название";
+
+/* Class = "UITabBarItem"; title = "Player"; ObjectID = "Ur8-HC-62i"; */
+"Ur8-HC-62i.title" = "Воспроизведение";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "aLB-7f-hlF"; */
+"aLB-7f-hlF.text" = "Название";
+
+/* Class = "UINavigationItem"; title = "Edit audio book"; ObjectID = "cvb-Na-6R3"; */
+"cvb-Na-6R3.title" = "Редактирование аудиокниги";
+
+/* Class = "UILabel"; text = "Cover"; ObjectID = "h9p-M6-Em6"; */
+"h9p-M6-Em6.text" = "Обложка";
+
+/* Class = "UINavigationItem"; title = "Play audio book"; ObjectID = "im5-V8-YyA"; */
+"im5-V8-YyA.title" = "Воспроизвести";
+
+/* Class = "UIButton"; normalTitle = "Choose from photo"; ObjectID = "lKc-bF-1bd"; */
+"lKc-bF-1bd.normalTitle" = "Выбрать из фото";
+
+/* Class = "UIButton"; normalTitle = "Sleep timer"; ObjectID = "n8m-dE-8f1"; */
+"n8m-dE-8f1.normalTitle" = "Таймер сна";
+
+/* Class = "UITextField"; placeholder = "Name audiobook"; ObjectID = "pCK-Hz-gGk"; */
+"pCK-Hz-gGk.placeholder" = "Название аудиокниги";
+
+/* Class = "UINavigationItem"; title = "AudioBook"; ObjectID = "pIX-FZ-eI7"; */
+"pIX-FZ-eI7.title" = "Аудиокнига";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "sfp-KE-i4Y"; */
+"sfp-KE-i4Y.text" = "Детали";
+
+/* Class = "UITextField"; placeholder = "Name charter"; ObjectID = "tEe-b0-dxq"; */
+"tEe-b0-dxq.placeholder" = "Название главы";
+
+/* Class = "UILabel"; text = "URL"; ObjectID = "xCe-Ld-8D3"; */
+"xCe-Ld-8D3.text" = "URL";

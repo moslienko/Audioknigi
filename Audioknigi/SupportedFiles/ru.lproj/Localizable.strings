@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  Audioknigi
+
+  Created by Pavel Moslienko on 19/12/2018.
+  Copyright © 2018 Pavel Moslienko. All rights reserved.
+*/
+"Delete" = "Удаление";
+"Delete this charter?" = "Удалить эту главу?";
+"Error" = "Ошибка";
+"Error delete charter" = "Ошибка удаления главы";
+"Cancel" = "Отмена";
+"Delete audio book?" = "Удалить аудиокнигу?";
+"Yes" = "Да";
+"Error delete book" = "Ошибка удаления аудиокниги";
+"New Audiobook" = "Новая аудиокнига";
+"Choose method" = "Выберите способ";
+"Create empty audiobook" = "Создать пустую аудиокнигу";
+"Auto parce from knigavuhe URL" = "Автоматически, используя ссылку с knigavuhe";
+"Enter URL" = "Введите URL";
+"Add" = "Добавить";
+"Error create book" = "Ошибка создания книги";
+"Not correct URL" = "Не корректный адрес URL";
+"Enter url audiobooks on knigavuhe.ru" = "Введите URL с knigavuhe.ru";
+"Add new charter" = "Создание новой главы";
+"Charter name" = "Название главы";
+"Error update book" = "Добавить";
+"New audiobook" = "Добавить";
+"Sleep timer" = "Таймер сна";
+"Turn off" = "Без таймера";
+"In 5 minutes" = "Через 5 минут";
+"In 10 minutes" = "Через 10 минут";
+"In 15 minutes" = "Через 15 минут";
+"In 30 minutes" = "Через 30 минут";
+"In 45 minutes" = "Через 45 минут";
+"In 1 hours" = "Через 1 час";
+"At the end of this chapter" = "После окончания главы";
+"Play \"Last\"" = "Воспроизвести";
+"Edit" = "Редактирование";

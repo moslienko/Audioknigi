@@ -153,32 +153,32 @@ class PlayerViewController: UIViewController {
     @IBAction func openTimer(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Turn off", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Turn off".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: 0)
         }))
-        alert.addAction(UIAlertAction(title: "In 5 minutes", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "In 5 minutes".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: 5*60)
         }))
-        alert.addAction(UIAlertAction(title: "In 10 minutes", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "In 10 minutes".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: 10*60)
         }))
-        alert.addAction(UIAlertAction(title: "In 15 minutes", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "In 15 minutes".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: 15*60)
         }))
-        alert.addAction(UIAlertAction(title: "In 30 minutes", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "In 30 minutes".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: 30*60)
         }))
-        alert.addAction(UIAlertAction(title: "In 45 minutes", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "In 45 minutes".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: 45*60)
         }))
-        alert.addAction(UIAlertAction(title: "In 1 hours", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "In 1 hours".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: 60*60)
         }))
-        alert.addAction(UIAlertAction(title: "At the end of this chapter", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "At the end of this chapter".localized, style: .default , handler:{ (UIAlertAction)in
             self.setTimer(seconds: -1)
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler:{ (UIAlertAction)in }))
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -188,7 +188,7 @@ class PlayerViewController: UIViewController {
         print ("seconds:",seconds)
         if seconds == 0 {
             //Без таймера
-            self.timerLabel?.setTitle("Sleep timer", for:.normal)
+            self.timerLabel?.setTitle("Sleep timer".localized, for:.normal)
         }
         if seconds < 0 {
             //Отключить по окончанию главы

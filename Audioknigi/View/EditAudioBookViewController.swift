@@ -78,7 +78,7 @@ class EditAudioBookViewController: UIViewController, UIImagePickerControllerDele
                 navigationController?.popViewController(animated: true)
             }
             else {
-                showNote(vc: self.navigationController!, title: "Error", text: "Error update book", style: .error)
+                showNote(vc: self.navigationController!, title: "Error".localized, text: "Error update book".localized, style: .error)
             }
         }
         else {
@@ -86,7 +86,7 @@ class EditAudioBookViewController: UIViewController, UIImagePickerControllerDele
             if createBook(bookInfo: AudioBooks.init(
                 id: randomString(length: 6),
                 image: (coverImage.image?.pngData())!,
-                name: nameAudioBook?.text ?? "New audiobook",
+                name: nameAudioBook?.text ?? "New audiobook".localized,
                 url:URL(string: "google.com")!,
                 charter: 0,
                 time: 0
@@ -94,7 +94,7 @@ class EditAudioBookViewController: UIViewController, UIImagePickerControllerDele
                 navigationController?.popViewController(animated: true)
             }
             else {
-                showNote(vc: self.navigationController!, title: "Error", text: "Error create book", style: .error)
+                showNote(vc: self.navigationController!, title: "Error".localized, text: "Error create book".localized, style: .error)
             }
         }
     }

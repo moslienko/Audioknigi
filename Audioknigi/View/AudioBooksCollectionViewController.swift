@@ -54,7 +54,7 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         
         let lastBook = getLastBook()
         if lastBook.count > 0 {
-              link.append(UIApplicationShortcutItem(type: "com.moslienko.Audioknigi.lastBookPlay", localizedTitle: "Play \"Last\"", localizedSubtitle: lastBook[0].name, icon: UIApplicationShortcutIcon(templateImageName: "play"), userInfo: nil))
+              link.append(UIApplicationShortcutItem(type: "com.moslienko.Audioknigi.lastBookPlay", localizedTitle: "Play \"Last\"".localized, localizedSubtitle: lastBook[0].name, icon: UIApplicationShortcutIcon(templateImageName: "play"), userInfo: nil))
         }
       
         return link
@@ -83,17 +83,17 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
      Модальное окно с выбором способа добавления аудиокниги
      */
     @IBAction func addAudioBook(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New Audiobook", message: "Choose way", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "New Audiobook".localized, message: "Choose method".localized, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Add manual from URL", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Create empty audiobook".localized, style: .default , handler:{ (UIAlertAction)in
             self.addFromCustomUrl()
         }))
         
-        alert.addAction(UIAlertAction(title: "Auto parce from knigavuhe URL", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Auto parce from knigavuhe URL".localized, style: .default , handler:{ (UIAlertAction)in
             self.addFromKnigaVuhe()
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler:{ (UIAlertAction)in }))
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -112,9 +112,9 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
      Добавить аудиокнигу используя ее url с сайта knigavuhe
      */
     func addFromKnigaVuhe() {
-        let alert = UIAlertController(title: "Enter URL", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Enter URL".localized, message: "", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add", style: .default) { (alertAction) in
+        let action = UIAlertAction(title: "Add".localized, style: .default) { (alertAction) in
             let textField = alert.textFields![0] as UITextField
             
             if textField.text != "" {
@@ -137,20 +137,20 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
                         self.collectionView.reloadData()
                     }
                     else {
-                        showNote(vc: self.navigationController!, title: "Error", text: "Error create book", style: .error)
+                        showNote(vc: self.navigationController!, title: "Error".localized, text: "Error create book".localized, style: .error)
                     }
                 }
                 else {
-                    showNote(vc: self.navigationController!, title: "Error", text: "Not correct URL", style: .error)
+                    showNote(vc: self.navigationController!, title: "Error".localized, text: "Not correct URL".localized, style: .error)
                 }
                 
             }
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Enter url audiobooks on knigavuhe.ru"
+            textField.placeholder = "Enter url audiobooks on knigavuhe.ru".localized
         }
         
         alert.addAction(action)
