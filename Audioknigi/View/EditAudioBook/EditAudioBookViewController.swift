@@ -9,7 +9,7 @@
 import UIKit
 import ShadowImageView
 
-class EditAudioBookViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditAudioBookViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var coverImage: ShadowImageView!
     @IBOutlet weak var nameAudioBook: UITextField!
@@ -38,26 +38,6 @@ class EditAudioBookViewController: UIViewController, UIImagePickerControllerDele
     
     @IBAction func standartImageClick(_ sender: UIButton) {
         setStandartCover()
-    }
-    
-    /**
-     Установка стандартного изображения для обложки
-     */
-    func setStandartCover()  {
-        self.coverImage?.image = UIImage(named: "AppIcon")
-    }
-    
-    /**
-     Выбор обложки из пользовательской библиотеки
-     */
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-        
-        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
-            self.coverImage?.image = pickedImage
-        }
-        
-        dismiss(animated: true, completion: nil)
     }
     
     /**
@@ -98,15 +78,5 @@ class EditAudioBookViewController: UIViewController, UIImagePickerControllerDele
             }
         }
     }
-    
-    // Helper function inserted by Swift 4.2 migrator.
-    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-    }
-    
-    // Helper function inserted by Swift 4.2 migrator.
-    fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-        return input.rawValue
-    }
-    
+
 }

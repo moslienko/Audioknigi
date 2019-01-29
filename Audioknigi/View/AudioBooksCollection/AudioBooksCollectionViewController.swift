@@ -8,8 +8,10 @@
 
 import UIKit
 
-class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRecognizerDelegate,UIViewControllerPreviewingDelegate {
-    private let reuseIdentifier = "cellAudioBook"
+class AudioBooksCollectionViewController: UIViewController ,UIGestureRecognizerDelegate,UIViewControllerPreviewingDelegate {
+    let reuseIdentifier = "cellAudioBook"
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var books = [AudioBooks]() // Список сохраненых книг
     let audioPlayer = Player.shared //Аудиоплеер
@@ -17,6 +19,8 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
         UIApplication.shared.shortcutItems = getHomeIconShortcuts()
         
         self.collectionView?.register(UINib(nibName: "AudioBookViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
@@ -58,25 +62,6 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         }
       
         return link
-    }
-    
-    // MARK: UICollectionViewDataSource
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return books.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:AudioBookViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AudioBookViewCell
-        let book = self.books[indexPath.row]
-        
-        cell.bookCover?.image = UIImage(data: book.image)
-        cell.bookCover?.shadowAlpha = CGFloat(0.95)
-        
-        return cell
     }
     
     /**
@@ -159,12 +144,6 @@ class AudioBooksCollectionViewController: UICollectionViewController,UIGestureRe
         self.present(alert, animated:true, completion: nil)
     }
     
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView.cellForItem(at: indexPath) != nil {
-            self.performSegue(withIdentifier: "openAudioBook", sender: self)
-        }
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print ("click")

@@ -344,7 +344,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KQ2-mu-LKZ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Player" image="playlists" id="Ur8-HC-62i"/>
+                    <tabBarItem key="tabBarItem" title="Player" image="musical_notes" id="Ur8-HC-62i"/>
                     <navigationItem key="navigationItem" title="Play audio book" largeTitleDisplayMode="never" id="im5-V8-YyA">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="kLH-Tu-S1b"/>
                     </navigationItem>
@@ -398,6 +398,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="oRE-Ni-V65" id="evQ-PG-e0o"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCx-N0-fMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -407,7 +410,7 @@
         <scene sceneID="9uF-iG-DtA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hIG-N1-FCQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My collection" image="folder_music" id="G8p-0c-ykU"/>
+                    <tabBarItem key="tabBarItem" title="My collection" image="music_library" id="G8p-0c-ykU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dFk-Ou-P08">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -447,7 +450,7 @@
     </scenes>
     <resources>
         <image name="alarms" width="32" height="32"/>
-        <image name="folder_music" width="32" height="32"/>
-        <image name="playlists" width="32" height="32"/>
+        <image name="music_library" width="30" height="30"/>
+        <image name="musical_notes" width="30" height="30"/>
     </resources>
 </document>
