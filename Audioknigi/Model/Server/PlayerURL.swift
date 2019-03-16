@@ -28,7 +28,7 @@ class playerURL {
      - Returns: URL для доступа к файлу
      */
     func generateCyrillicURL() -> URL {
-        let url = "https://s\(self.storagePath).knigavuhe.ru/\(self.extraStoragePath)/audio/\(self.bookID)/\(self.charterName).mp3"
+        let url = "https://s\(self.storagePath).knigavuhe.org/\(self.extraStoragePath)/audio/\(self.bookID)/\(self.charterName).mp3"
         //Кодирование
         let encodedURL = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         let urlBook = URL.init(string: encodedURL!)
@@ -56,7 +56,7 @@ class playerURL {
         //Без заглавных букв
         let latinUrl = latinUrlWithoutSymbol?.lowercased()
         //Итоговый путь
-        let urlLatin = "https://s\(self.storagePath).knigavuhe.ru/\(self.extraStoragePath)/audio/\(self.bookID)/\(String(describing: latinUrl!)).mp3"
+        let urlLatin = "https://s\(self.storagePath).knigavuhe.org/\(self.extraStoragePath)/audio/\(self.bookID)/\(String(describing: latinUrl!)).mp3"
         //Создание URL
         let urlBookLatin = URL.init(string: urlLatin)
         

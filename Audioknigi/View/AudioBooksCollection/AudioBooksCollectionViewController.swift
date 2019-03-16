@@ -135,7 +135,7 @@ class AudioBooksCollectionViewController: UIViewController ,UIGestureRecognizerD
         let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Enter url audiobooks on knigavuhe.ru".localized
+            textField.placeholder = "Enter url audiobooks on knigavuhe.org".localized
         }
         
         alert.addAction(action)

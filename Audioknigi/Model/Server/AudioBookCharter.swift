@@ -53,7 +53,7 @@ func getCharterBook(url:URL,bookID:String) -> [Charter] {
                 
                 if player.checkAudioURL() {
 
-                    print ("absolutePath:","https://s\(player.storagePath).knigavuhe.ru/\(player.storagePath)/audio/\(bookID)/ with algoritm: \(player.urlAlgorithm)")
+                    print ("absolutePath:","https://s\(player.storagePath).knigavuhe.org/\(player.storagePath)/audio/\(bookID)/ with algoritm: \(player.urlAlgorithm)")
                     
                     for (i,data) in playlistItem.enumerated() {
                         

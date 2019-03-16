@@ -234,6 +234,7 @@ class PlayerViewController: UIViewController {
             self.player.url = nextAudio.url
             self.player.charterID += 1
             self.player.book[0].time = 0
+            self.player.player?.pause()
             self.player.initPlayer()
             self.player.startPlayInTime(0)
             
