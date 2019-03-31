@@ -9,5 +9,6 @@ target 'Audioknigi' do
   pod 'SwiftSoup'
   pod 'ShadowImageView'
   pod 'Toast-Swift'
+  pod 'Typhoon'
 
 end

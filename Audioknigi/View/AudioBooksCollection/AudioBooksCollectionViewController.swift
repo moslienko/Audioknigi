@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Typhoon
 
 class AudioBooksCollectionViewController: UIViewController ,UIGestureRecognizerDelegate,UIViewControllerPreviewingDelegate {
     let reuseIdentifier = "cellAudioBook"
@@ -15,6 +16,7 @@ class AudioBooksCollectionViewController: UIViewController ,UIGestureRecognizerD
     
     var books = [AudioBooks]() // Список сохраненых книг
     let audioPlayer = Player.shared //Аудиоплеер
+    @objc var serverProviderService: AudioBookProvider?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +76,7 @@ class AudioBooksCollectionViewController: UIViewController ,UIGestureRecognizerD
             self.addFromCustomUrl()
         }))
         
-        alert.addAction(UIAlertAction(title: "Auto parce from knigavuhe URL".localized, style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: String(format: "Auto parce from".localized, self.serverProviderService?.url ?? ""), style: .default , handler:{ (UIAlertAction)in
             self.addFromKnigaVuhe()
         }))
         
@@ -135,7 +137,7 @@ class AudioBooksCollectionViewController: UIViewController ,UIGestureRecognizerD
         let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Enter url audiobooks on knigavuhe.org".localized
+            textField.placeholder = String(format: "Enter url audiobooks".localized, self.serverProviderService?.url ?? "")
         }
         
         alert.addAction(action)

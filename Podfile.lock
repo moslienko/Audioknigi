@@ -2,23 +2,34 @@ PODS:
   - ShadowImageView (1.6.0)
   - SwiftSoup (1.7.4)
   - Toast-Swift (4.0.0)
+  - Typhoon (4.0.8):
+    - Typhoon/DeallocNotifier (= 4.0.8)
+    - Typhoon/IntrospectionUtils (= 4.0.8)
+    - Typhoon/no-arc (= 4.0.8)
+  - Typhoon/DeallocNotifier (4.0.8)
+  - Typhoon/IntrospectionUtils (4.0.8)
+  - Typhoon/no-arc (4.0.8):
+    - Typhoon/IntrospectionUtils
 
 DEPENDENCIES:
   - ShadowImageView
   - SwiftSoup
   - Toast-Swift
+  - Typhoon
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ShadowImageView
     - SwiftSoup
     - Toast-Swift
+    - Typhoon
 
 SPEC CHECKSUMS:
   ShadowImageView: c8cadd7e3e1e6a8e52a02e944a59bbbb048f2a5d
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
   Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
+  Typhoon: f8901ef1ad0e2fa520cda0f668492dd33353f7dc
 
-PODFILE CHECKSUM: 7a386a2cf1c7b0bbca7fc89cb2ab0e873c89e018
+PODFILE CHECKSUM: ea314450a47a7beea083b27e5977e93405715b30
 
 COCOAPODS: 1.5.3
