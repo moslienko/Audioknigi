@@ -33,6 +33,7 @@
 		956219F221A9747400F49C23 /* AudioBookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F121A9747400F49C23 /* AudioBookViewCell.swift */; };
 		956219F421A974A100F49C23 /* AudioBooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */; };
 		956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956219F521A9751C00F49C23 /* AudioBooks.swift */; };
+		956755EF2250671800611F1E /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956755EE2250671800611F1E /* Timer.swift */; };
 		95714BB721B2474F00A10A94 /* BookCharter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95714BB621B2474F00A10A94 /* BookCharter.swift */; };
 		957B754A21B6392C00F3B5DB /* EditAudioBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */; };
 		9593D49A21C50AD500A840DC /* PlayerCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9593D49921C50AD500A840DC /* PlayerCover.xib */; };
@@ -75,6 +76,7 @@
 		956219F121A9747400F49C23 /* AudioBookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookViewCell.swift; sourceTree = "<group>"; };
 		956219F321A974A100F49C23 /* AudioBooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooksCollectionViewController.swift; sourceTree = "<group>"; };
 		956219F521A9751C00F49C23 /* AudioBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooks.swift; sourceTree = "<group>"; };
+		956755EE2250671800611F1E /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		95714BB621B2474F00A10A94 /* BookCharter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCharter.swift; sourceTree = "<group>"; };
 		957B754921B6392C00F3B5DB /* EditAudioBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAudioBookViewController.swift; sourceTree = "<group>"; };
 		9593D49921C50AD500A840DC /* PlayerCover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerCover.xib; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				950641E521AC1CA200994EF5 /* AVPlayer.swift */,
 				9534978F21AD3BFE004474AC /* MiniPlayer.swift */,
 				950251D521BCDE0D00F1865E /* Notification.swift */,
+				956755EE2250671800611F1E /* Timer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,12 +407,14 @@
 				"${BUILT_PRODUCTS_DIR}/ShadowImageView/ShadowImageView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ShadowImageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -440,6 +445,7 @@
 				95023740220075AC00AFE15C /* AudioBooks+CollectionViewDelegate.swift in Sources */,
 				956219F421A974A100F49C23 /* AudioBooksCollectionViewController.swift in Sources */,
 				9502374922007CCC00AFE15C /* Extension+AVPlayer.swift in Sources */,
+				956755EF2250671800611F1E /* Timer.swift in Sources */,
 				956219E921A9254A00F49C23 /* AudioBookCharter.swift in Sources */,
 				95588FD621AAAC78001925E9 /* Player.swift in Sources */,
 				956219F621A9751C00F49C23 /* AudioBooks.swift in Sources */,
